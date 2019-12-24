@@ -26,11 +26,11 @@ void fullscreen(){
 }
 
 void gotoxy(int x, int y){
-//
+//author	: 
 
 //modul untuk memfungsikan fungsi gotoxy
-//
-//
+//I.S	:
+//F.S	:
 	
 	HANDLE hConsoleOutput;  
 	COORD dwCursorPosition;  
@@ -44,8 +44,8 @@ void judul(){
 // Author	: Irsyad Muhammad
 
 // Procedur untuk menampilkan judul permainan
-// I.S		: Layar menampilkan blankpage
-// F.S		: Layar menampilkan judul permainan "CCC :Circle Cross Challange"
+// I.S	: Layar menampilkan blankpage
+// F.S	: Layar menampilkan judul permainan "CCC :Circle Cross Challange"
 
 /*BEGIN PROCEDURE_JUDUL*/	
 	/*TAMPILAN CCC*/
@@ -96,6 +96,128 @@ void judul(){
 	/*END TAMPILAN CIRCLE CROSS CHALLANGE*/
 	
 /*END PROCEDURE_JUDUL*/
+}
+
+void PilihLevel(){
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan pilihan level yang tersedia
+//I.S	: Ditampilkan tampilan layar modul MenuUtama
+//F.S	: Ditampilkan tampilan menu yang menampilkan level yang tersedia
+
+	int pilihlevel; //variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
+	gotoxy(70,20);printf("[1] MUDAH\n");
+	gotoxy(70,21);printf("[2] MENENGAH\n");
+	gotoxy(70,22);printf("[3] SULIT\n");
+	gotoxy(70,23);printf("[0] KEMBALI KE MENU UTAMA\n");
+	gotoxy(70,25);printf("Masukkan Pilihan :\n");
+	gotoxy(90,25);scanf("%d",&pilihlevel);
+	
+	switch(pilihlevel){
+		case 1:
+			system("CLS");
+			PilihPapan();
+			break;
+			
+		case 2:
+			system("CLS");
+			PilihPapan();
+			break;
+			
+		case 3:
+			system("CLS");
+			break;
+			
+		case 0:
+			system("CLS");
+			MenuUtama();
+			break;
+	}
+}
+
+void PilihPapan(){
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan pilihan papan yang tersedia
+//I.S	: Ditampilkan tampilan modul PilihLevel
+//F.S	: Ditampilkan tampilan pilihan papan yang tersedia yaitu papan 3x3 dan papan 5x5, serta pilihan kembali ke menu sebelumnya dan menu utama
+
+	int pilihpapan; //pilihpapan adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
+	
+	gotoxy(70,20);printf("[1] PAPAN 3x3\n");
+	gotoxy(70,21);printf("[2] PAPAN 5x5\n");
+	gotoxy(70,22);printf("[9] Kembali\n");
+	gotoxy(70,23);printf("[0] Menu Utama\n");
+	gotoxy(70,25);printf("Masukkan Pilihan :\n");
+	gotoxy(90,25);scanf("%d",&pilihpapan);
+	
+		switch(pilihpapan){
+			case 1:
+				system("CLS");
+				board3();
+				break;
+			
+			case 2:
+				system("CLS");
+				board5();
+				break;
+			
+			case 9:
+				system("CLS");
+				PilihLevel();
+				break;
+				
+			case 0:
+				system("CLS");
+				MenuUtama();
+				break;
+		}
+}
+
+void board3(){
+//Author	: Irsyad Muhammad
+
+//Procedure untuk menampilkan papan ukuran 3x3
+//I.S	: Layar menampilkan pilihan sebelum modul board3
+//F.S	: Ditampilkan papan dengan grid 3x3
+		
+	/*TAMPILAN PAPAN*/
+	gotoxy(70,10);printf("|     |\n");
+	gotoxy(70,11);printf("|     |\n");
+	gotoxy(65,12);printf("_____|_____|_____\n");
+	gotoxy(70,13);printf("|     |\n");
+	gotoxy(70,14);printf("|  0  |\n");	
+	gotoxy(65,15);printf("_____|_____|_____\n");
+	gotoxy(70,16);printf("|     |\n");
+	gotoxy(70,17);printf("|     |\n");
+	gotoxy(70,18);printf("|     |\n");
+	/*END TAMPILAN PAPAN*/
+}
+
+void board5(){
+//Author	: Irsyad Muhammad
+
+//Procedure untuk menampilkan papan ukuran 5x5
+//I.S	: Layar menampilkan pilihan sebelum modul board5
+//F.S	: Ditampilkan papan dengan grid 5x5
+		
+	/*TAMPILAN PAPAN*/
+	gotoxy(60,10);printf("|     |     |     |\n");
+	gotoxy(60,11);printf("|     |     |     |\n"); //tempat penyimpanan bidak 1-5
+	gotoxy(55,12);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(60,13);printf("|     |     |     |\n");
+	gotoxy(60,14);printf("|     |     |     |\n"); //tempat penyimpanan bidak 6-10
+	gotoxy(55,15);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(60,16);printf("|     |     |     |\n");
+	gotoxy(60,17);printf("|     |     |     |\n"); //tempat penyimpanan bidak 11-15
+	gotoxy(55,18);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(60,19);printf("|     |     |     |\n");
+	gotoxy(60,20);printf("|     |     |     |\n"); //tempat penyimpanan bidak 16-20
+	gotoxy(55,21);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(60,22);printf("|     |     |     |\n");
+	gotoxy(60,23);printf("|     |     |     |\n"); //tempat penyimpanan bidak 21-25
+	gotoxy(60,24);printf("|     |     |     |\n");
+	/*END TAMPILAN PAPAN*/
 }
 
 void CaraBermain(){
@@ -158,9 +280,11 @@ void timer(float persentase){
 //Modul untuk 
 //I.S	:
 //F.S	:
+
 	clock_t endwait;
 	endwait=clock()+persentase*CLOCKS_PER_SEC;
 	while(clock()<endwait){};
+	
 }
 
 void loading(){
@@ -214,11 +338,13 @@ void MenuUtama(){
 	gotoxy(70,24);printf("[0] KELUAR\n");
 	gotoxy(70,26);printf("Pilih : \n");
 	gotoxy(78,26);scanf("%d",&PilihMenu);
+
 	switch(PilihMenu){
 		case 1: 
 			system("CLS");
 			loading();
 			system("CLS");
+			PilihLevel();
 		break;
 		
 		case 2: 

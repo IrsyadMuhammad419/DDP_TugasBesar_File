@@ -10,7 +10,7 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 #include<windows.h>
 
 /*Inisialisasi*/
-void board5();
+//void board5();
 void gotoxy(int x, int y);
 
 void fullscreen(){
