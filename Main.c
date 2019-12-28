@@ -11,11 +11,18 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 #include<time.h>
 #include<windows.h>
 
+
 /*VARIABEL GLOBAL*/
 char square[10]={'0','1','2','3','4','5','6','7','8','9'};
-char square5[26]={'0','1','2','3','4','5','6','7','8','9','10'};
+int Generate=1; //variabel global untuk menentukan kecerdasan komputer dan papan yang akan dipanggil
+
+
 /*INISIALISASI MODUL*/
 void gotoxy(int x, int y);
+void MenuUtama();
+void PilihPapan();
+void board3();
+
 
 void fullscreen(){
 //author	: internet
@@ -29,6 +36,7 @@ void fullscreen(){
 	keybd_event(VK_RETURN,0x1c,KEYEVENTF_KEYUP,0);
 	keybd_event(VK_MENU,0x38,KEYEVENTF_KEYUP,0);
 }
+
 
 void gotoxy(int x, int y){
 //author	: 
@@ -45,7 +53,8 @@ void gotoxy(int x, int y){
 	SetConsoleCursorPosition(hConsoleOutput,dwCursorPosition);   
 }
 
-void judul(){
+
+void Judul(){
 // Author	: Irsyad Muhammad
 
 // Procedur untuk menampilkan judul permainan
@@ -107,6 +116,7 @@ void judul(){
 /*END PROCEDURE_JUDUL*/
 }
 
+
 void PilihLevel(){
 //author	: Irsyad Muhammad
 
@@ -125,16 +135,20 @@ void PilihLevel(){
 	switch(pilihlevel){
 		case 1:
 			system("CLS");
+			Generate=Generate*1;
 			PilihPapan();
 			break;
 			
 		case 2:
 			system("CLS");
+			Generate=Generate*2;
 			PilihPapan();
 			break;
 			
 		case 3:
 			system("CLS");
+			Generate=Generate*3;
+			PilihPapan();
 			break;
 			
 		case 0:
@@ -143,6 +157,7 @@ void PilihLevel(){
 			break;
 	}
 }
+
 
 void PilihPapan(){
 //author	: Irsyad Muhammad
@@ -164,11 +179,13 @@ void PilihPapan(){
 		switch(pilihpapan){
 			case 1:
 				system("CLS");
+				Generate=Generate*3;
 				GuntingKertasBatu();
 				break;
 			
 			case 2:
 				system("CLS");
+				Generate=Generate*5;
 				GuntingKertasBatu();
 				break;
 			
@@ -184,12 +201,13 @@ void PilihPapan(){
 		}
 }
 
+
 int GuntingKertasBatu(){
 //author	: 
 
-//Modul untuk 
-//I.S	: 
-//F.S	: 
+//Modul untuk menampilkan permainan gunting kertas batumemain
+//	: 
+//	: 
 
     srand(time(NULL)); //berguna untuk mengacak angka
     int pemain; //merupakan inisialisasi dari pilihan tangan player
@@ -216,18 +234,59 @@ int GuntingKertasBatu(){
 	                printf("\nGunting Lawan Gunting = Kau Seri \n\n");
 	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
 	                system("pause");
+	                GuntingKertasBatu();
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
 	                printf("\nGunting Lawan Batu = Kau Menang \n\n");
 	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
 	                system("pause");
+	                
+					switch(Generate){
+						case 3: 
+							Mudah3(1);
+						
+						case 5:
+							Mudah5(1);
+						
+						case 6:
+							Menengah3(1);
+							
+						case 10:
+							Menengah5(1);
+							
+						case 9:
+							Sulit3(1);
+							
+						case 15:
+							Sulit5(1);
+					}
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
 	                printf("\nGunting Lawan Kertas = Kau Kalah \n\n");
 	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
 	                system("pause");
+					
+					switch(Generate){
+						case 3: 
+							Mudah3(2);
+						
+						case 5:
+							Mudah5(2);
+						
+						case 6:
+							Menengah3(2);
+							
+						case 10:
+							Menengah5(2);
+							
+						case 9:
+							Sulit3(2);
+							
+						case 15:
+							Sulit5(2);
+					}
 	            }
 	        }
 	        else if(musuh==1)
@@ -237,19 +296,58 @@ int GuntingKertasBatu(){
 	                printf("\nBatu Lawan Gunting = Kau Kalah \n\n");
 	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
 	                system("pause");
+	               
+				   	switch(Generate){
+						case 3: 
+							Mudah3(2);
+						
+						case 5:
+							Mudah5(2);
+						
+						case 6:
+							Menengah3(2);
+							
+						case 10:
+							Menengah5(2);
+							
+						case 9:
+							Sulit3(2);
+							
+						case 15:
+							Sulit5(2);
+					}	                
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
 	                printf("\nBatu Lawan Batu = Kau Seri \n\n");
 	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
 	                system("pause");
-	                system("cls");
+	                GuntingKertasBatu();
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
 	                printf("\nBatu Lawan Kertas = Kau Menang \n\n");
 	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
 	                system("pause");
+					switch(Generate){
+						case 3: 
+							Mudah3(1);
+						
+						case 5:
+							Mudah5(1);
+						
+						case 6:
+							Menengah3(1);
+							
+						case 10:
+							Menengah5(1);
+							
+						case 9:
+							Sulit3(1);
+							
+						case 15:
+							Sulit5(1);
+					}
 	            }
 	        }
 	        if(musuh==2)
@@ -259,18 +357,59 @@ int GuntingKertasBatu(){
 	                printf("\nKertas Lawan Gunting = Kau Menang \n\n");
 	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
 	                system("pause");
+	                
+	                switch(Generate){
+						case 3: 
+							Mudah3(1);
+						
+						case 5:
+							Mudah5(1);
+						
+						case 6:
+							Menengah3(1);
+							
+						case 10:
+							Menengah5(1);
+							
+						case 9:
+							Sulit3(1);
+							
+						case 15:
+							Sulit5(1);
+					}
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
 	                printf("\nKertas Lawan Batu = Kau Kalah \n\n");
 	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
 	                system("pause");
+	                
+            		switch(Generate){
+						case 3: 
+							Mudah3(2);
+						
+						case 5:
+							Mudah5(2);
+						
+						case 6:
+							Menengah3(2);
+							
+						case 10:
+							Menengah5(2);
+							
+						case 9:
+							Sulit3(2);
+							
+						case 15:
+							Sulit5(2);
+					}
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
 	                printf("\nKertas Lawan Kertas = Kau Seri \n\n");
 	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
 	                system("pause");
+	                GuntingKertasBatu();
 	            }
 	        }
 		}else{
@@ -279,6 +418,157 @@ int GuntingKertasBatu(){
 			GuntingKertasBatu();
 		}
 }
+
+
+int CekMenang(){
+//
+
+//
+//
+
+	/*Cek horizontal*/
+	
+	if (square[1] == square[2] && square[2] == square[3])
+        return 1;
+        
+    else if (square[4] == square[5] && square[5] == square[6])
+        return 1;
+        
+    else if (square[7] == square[8] && square[8] == square[9])
+        return 1;
+    /*Cek Vertikal*/
+    else if (square[1] == square[4] && square[4] == square[7])
+        return 1;
+        
+    else if (square[2] == square[5] && square[5] == square[8])
+        return 1;
+        
+    else if (square[3] == square[6] && square[6] == square[9])
+        return 1;
+    /*Cek Diagonal*/
+    else if (square[1] == square[5] && square[5] == square[9])
+        return 1;
+        
+    else if (square[3] == square[5] && square[5] == square[7])
+        return 1;
+	else if(square[1] != '1' && square[2] != '2' && square[3] != '3' && square[4] != '4' && square[5] != '5' && square[6] != '6' && square[7] != '7' && square[8] != '8' && square[9] != '9'){
+    	return 2;
+	}
+	else{
+		return 0;
+	}
+}
+
+int LangkahKomputer(){
+//	
+	
+//
+//
+    srand(time(0));
+	char random;
+	char value;
+	random = "123456789" [rand() % 9];
+	value = random;
+	
+	return value ;
+}
+
+
+int Mudah3(int GiliranMain){
+// author	:
+
+//
+//
+	unsigned turn;
+	int pilihan, i,win;
+	
+	for(turn = 0; turn < 9 && win == 0; turn++){
+
+		
+		if((turn+GiliranMain) %2 == 0){
+			/*computer turn*/
+			for(i = 1; i<10; i++){
+				if(LangkahKomputer() == square[i] && square[i] != 'O'){
+					square[i]='X';
+					break;
+				}
+				else if(LangkahKomputer() == square[i] && square[i] != 'O'){
+					square[i]='X';
+					break;
+				}
+			}
+		}
+		else{
+			begin:
+			board3();
+			
+			scanf("%d",&pilihan);
+			if (pilihan == 1 && square[1] == '1')
+				square[1]='O';
+			
+			else if(pilihan == 2 && square[2] == '2')
+				square[2]='O';
+			
+			else if(pilihan == 3 && square[3] == '3')
+				square[3]='O';
+			
+			else if(pilihan == 4 && square[4] == '4')
+				square[4]='O';
+			
+			else if(pilihan == 5 && square[5] == '5')
+				square[5]='O';
+			
+			else if(pilihan == 6 && square[6] == '6')
+				square[6]='O';
+			
+			else if(pilihan == 7 && square[7] == '7')
+				square[7]='O';
+			
+			else if(pilihan == 8 && square[8] == '8')
+				square[8]='O';
+			
+			else if(pilihan == 9 && square[9] == '9')
+				square[9]='O';
+			
+			else{
+				printf("Langkah Tidak Valid\n");
+				getch();
+				goto begin;
+			}
+			win=CekMenang();
+			board3();
+		}
+	}
+	if (win == 1){
+		printf("Kamu Menang!\n");
+	}
+	else if(win == 2){
+		printf("Kamu Kalah\n");
+	}
+getch();
+}
+
+int Mudah5(int GiliranMain){
+	exit(1);
+}
+
+int Menengah3(int GiliranMain){
+	exit(1);
+}
+
+int Menengah5(int GiliranMain){
+	exit(1);
+}
+
+int Sulit3(int GiliranMain){
+	exit(1);
+}
+
+
+int Sulit5(int GiliranMain){
+	exit(1);
+}
+
 
 void board3(){
 //Author	: Irsyad Muhammad
@@ -300,6 +590,7 @@ void board3(){
 	gotoxy(70,18);printf("|     |\n");
 	/*END TAMPILAN PAPAN*/
 }
+
 
 void board5(){
 //Author	: Irsyad Muhammad
@@ -326,6 +617,7 @@ void board5(){
 	gotoxy(60,24);printf("|     |     |     |\n");
 	/*END TAMPILAN PAPAN*/
 }
+
 
 void CaraBermain(){
 //author	: Irsyad Muhammad
@@ -354,6 +646,7 @@ void CaraBermain(){
 /*END PROCEDURE CARA_BERMAIN*/
 }
 
+
 void AboutUs(){
 //author	: Irsyad Muhammad
 
@@ -381,6 +674,7 @@ void AboutUs(){
 
 }
 
+
 void timer(float persentase){
 //author:
 
@@ -393,6 +687,7 @@ void timer(float persentase){
 	while(clock()<endwait){};
 	
 }
+
 
 void loading(){
 //author	: Irsyad Muhammad
@@ -428,6 +723,7 @@ void loading(){
 /*END PROCEDURE LOADING*/
 }
 
+
 void MenuUtama(){
 //author	: Irsyad Muhammad
 
@@ -436,7 +732,7 @@ void MenuUtama(){
 //F.S	: Ditampilkan tampilan menu utama yang menampilkan pilihan untuk bermain, petunjuk permainan, highscore, dan exit
 	
 	int PilihMenu;	//PilihMenu adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu	yang tersedia
-	judul();
+	Judul();
 	
 	gotoxy(70,20);printf("[1] PERMAINAN BARU\n");
 	gotoxy(70,21);printf("[2] CARA & ATURAN BERMAIN\n");
