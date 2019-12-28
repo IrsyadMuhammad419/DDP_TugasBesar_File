@@ -7,8 +7,13 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 ---------------------------------------------------*/
 #include<stdio.h>
 #include<stdlib.h>
-#include<windows.h>
+#include<conio.h>
 #include<time.h>
+#include<windows.h>
+
+/*VARIABEL GLOBAL*/
+char square[10]={'0','1','2','3','4','5','6','7','8','9'};
+char square5[26]={'0','1','2','3','4','5','6','7','8','9','10'};
 /*INISIALISASI MODUL*/
 void gotoxy(int x, int y);
 
@@ -92,8 +97,12 @@ void judul(){
 	/*END TAMPILAN CCC*/
 	
 	/*TAMPILAN CIRCLE CROSS CHALLANGE*/
-	gotoxy(70,14);printf("CIRCLE CROSS CHALLENGES\n\n");
+	gotoxy(70,15);printf("CIRCLE CROSS CHALLENGES\n\n");
 	/*END TAMPILAN CIRCLE CROSS CHALLANGE*/
+	
+	/*GARIS PEMBATAS*/
+	gotoxy(55,17);printf("______________________________________________________");
+	/*END GARIS PEMBATAS*/
 	
 /*END PROCEDURE_JUDUL*/
 }
@@ -109,7 +118,7 @@ void PilihLevel(){
 	gotoxy(70,20);printf("[1] MUDAH\n");
 	gotoxy(70,21);printf("[2] MENENGAH\n");
 	gotoxy(70,22);printf("[3] SULIT\n");
-	gotoxy(70,23);printf("[0] KEMBALI KE MENU UTAMA\n");
+	gotoxy(70,23);printf("[0] Kembali Ke Menu Utama\n");
 	gotoxy(70,25);printf("Masukkan Pilihan :\n");
 	gotoxy(90,25);scanf("%d",&pilihlevel);
 	
@@ -144,6 +153,7 @@ void PilihPapan(){
 
 	int pilihpapan; //pilihpapan adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
 	
+	gotoxy(73,18);printf("PILIH PAPAN");
 	gotoxy(70,20);printf("[1] PAPAN 3x3\n");
 	gotoxy(70,21);printf("[2] PAPAN 5x5\n");
 	gotoxy(70,22);printf("[9] Kembali\n");
@@ -154,12 +164,12 @@ void PilihPapan(){
 		switch(pilihpapan){
 			case 1:
 				system("CLS");
-				board3();
+				GuntingKertasBatu();
 				break;
 			
 			case 2:
 				system("CLS");
-				board5();
+				GuntingKertasBatu();
 				break;
 			
 			case 9:
@@ -174,22 +184,119 @@ void PilihPapan(){
 		}
 }
 
+int GuntingKertasBatu(){
+//author	: 
+
+//Modul untuk 
+//I.S	: 
+//F.S	: 
+
+    srand(time(NULL)); //berguna untuk mengacak angka
+    int pemain; //merupakan inisialisasi dari pilihan tangan player
+    int musuh; //merupakan inisialisasi dari pilihan tangan musuh
+    int menang=0; //merupakan inisialisasi dari banyak kemenangan, jumlahnya dimulai dari 0
+    int seri=0; //merupakan inisialisasi dari banyak imbang, jumlahnya dimulai dari 0
+    int kalah=0; //merupakan inisialisasi dari banyak kekalahan, jumlahnya dimulai dari 0
+    char jawaban;
+    system("cls"); //berfungsi untuk clear screen atau membersihkan layar(mengosongkan layar)
+
+        musuh = rand()%3; //inisialisasi dari pilihan musuh yang acak dari 0 hingga 2
+        printf("Pilihlah Tanganmu : \n");
+        printf("1. Gunting\n");
+        printf("2. Batu\n");
+        printf("3. Kertas\n");
+        printf("Masukkan Pilihan : ");
+        scanf("%d",&pemain); //menginput pilihan tangan user/player
+        
+		if(pemain>0 && pemain<4){
+			if(musuh==0) //jika hasil acak = 0 berinisialiasi bahwa pilihan musuh adalah gunting
+	        {
+	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
+	            {
+	                printf("\nGunting Lawan Gunting = Kau Seri \n\n");
+	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
+	            {
+	                printf("\nGunting Lawan Batu = Kau Menang \n\n");
+	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
+	            {
+	                printf("\nGunting Lawan Kertas = Kau Kalah \n\n");
+	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	        }
+	        else if(musuh==1)
+	        {
+	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
+	            {
+	                printf("\nBatu Lawan Gunting = Kau Kalah \n\n");
+	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
+	            {
+	                printf("\nBatu Lawan Batu = Kau Seri \n\n");
+	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
+	                system("pause");
+	                system("cls");
+	            }
+	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
+	            {
+	                printf("\nBatu Lawan Kertas = Kau Menang \n\n");
+	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	        }
+	        if(musuh==2)
+	        {
+	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
+	            {
+	                printf("\nKertas Lawan Gunting = Kau Menang \n\n");
+	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
+	            {
+	                printf("\nKertas Lawan Batu = Kau Kalah \n\n");
+	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
+	            {
+	                printf("\nKertas Lawan Kertas = Kau Seri \n\n");
+	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
+	                system("pause");
+	            }
+	        }
+		}else{
+			printf("Angka Anda Masukkan Tidak Valid\n");
+			system("pause");
+			GuntingKertasBatu();
+		}
+}
+
 void board3(){
 //Author	: Irsyad Muhammad
 
 //Procedure untuk menampilkan papan ukuran 3x3
 //I.S	: Layar menampilkan pilihan sebelum modul board3
 //F.S	: Ditampilkan papan dengan grid 3x3
-		
+	
+	system("CLS");
 	/*TAMPILAN PAPAN*/
 	gotoxy(70,10);printf("|     |\n");
-	gotoxy(70,11);printf("|     |\n");
+	gotoxy(65,11);printf("  %c  |  %c  |  %c\n", square[1],square[2],square[3]);
 	gotoxy(65,12);printf("_____|_____|_____\n");
 	gotoxy(70,13);printf("|     |\n");
-	gotoxy(70,14);printf("|  0  |\n");	
+	gotoxy(65,14);printf("  %c  |  %c  |  %c\n",square[4],square[5],square[6]);	
 	gotoxy(65,15);printf("_____|_____|_____\n");
 	gotoxy(70,16);printf("|     |\n");
-	gotoxy(70,17);printf("|     |\n");
+	gotoxy(65,17);printf("  %c  |  %c  |  %c\n",square[7],square[8],square[9]);
 	gotoxy(70,18);printf("|     |\n");
 	/*END TAMPILAN PAPAN*/
 }
@@ -336,13 +443,13 @@ void MenuUtama(){
 	gotoxy(70,22);printf("[3] PAPAN PERINGKAT\n");
 	gotoxy(70,23);printf("[4] CREDITS\n");
 	gotoxy(70,24);printf("[0] KELUAR\n");
-	gotoxy(70,26);printf("Pilih : \n");
-	gotoxy(78,26);scanf("%d",&PilihMenu);
+	gotoxy(70,26);printf("Masukkan Pilihan : \n");
+	gotoxy(90,26);scanf("%d",&PilihMenu);
 
 	switch(PilihMenu){
 		case 1: 
 			system("CLS");
-			loading();
+//			loading();
 			system("CLS");
 			PilihLevel();
 		break;
@@ -372,8 +479,9 @@ void MenuUtama(){
 	}
 }
 
-
 int main(){
 	fullscreen();
 	MenuUtama();
+	
+	
 }
