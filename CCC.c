@@ -15,6 +15,7 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 
 /*VARIABEL GLOBAL*/
 int Generate=1; //variabel global untuk menentukan kecerdasan komputer dan papan yang akan dipanggil
+int game = 1; //variabel global untuk menentukan permainan sedang berada di ronde ke berapa / untuk membuat permainan berulang selama 10 kali
 
 
 /*INISIALISASI MODUL*/
@@ -246,7 +247,11 @@ int GuntingKertasBatu(){
 	                
 					switch(Generate){
 						case 3: 
-							Mudah3(1);
+							do{
+								Mudah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						
 						case 5:
 							Mudah5(1);
@@ -274,8 +279,11 @@ int GuntingKertasBatu(){
 					
 					switch(Generate){
 						case 3: 
-							Mudah3(2);
-						
+							do{
+								Mudah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						case 5:
 							Mudah5(2);
 						
@@ -305,7 +313,11 @@ int GuntingKertasBatu(){
 	               
 				   	switch(Generate){
 						case 3: 
-							Mudah3(2);
+							do{
+								Mudah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						
 						case 5:
 							Mudah5(2);
@@ -338,7 +350,11 @@ int GuntingKertasBatu(){
 	                gotoxy(65,25);system("pause");
 					switch(Generate){
 						case 3: 
-							Mudah3(1);
+							do{
+								Mudah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						
 						case 5:
 							Mudah5(1);
@@ -368,8 +384,11 @@ int GuntingKertasBatu(){
 	                
 	                switch(Generate){
 						case 3: 
-							Mudah3(1);
-						
+							do{
+								Mudah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						case 5:
 							Mudah5(1);
 						
@@ -395,8 +414,11 @@ int GuntingKertasBatu(){
 	                
             		switch(Generate){
 						case 3: 
-							Mudah3(2);
-						
+							do{
+								Mudah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);
 						case 5:
 							Mudah5(2);
 						
@@ -480,7 +502,7 @@ int minimax(int board[10], int player) {
 }
 
 
-void LangkahKomputerMudah3(int board[10]){
+void LangkahKomputerMudah3(int board[10]) {
 //	author	: Irsyad Muhammad
 	
 // board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
@@ -492,7 +514,7 @@ void LangkahKomputerMudah3(int board[10]){
 
 	/*Proses*/
 	reset:
-	move = 1 + rand()% 8; // 1 adalah range angka terkecil yg akan di random, dan 9 adalah angka terbesar yang akan dirandom
+	move = 1 + rand()% 9; // 1 adalah range angka terkecil yg akan di random, dan 9 adalah angka terbesar yang akan dirandom
 		
 	if(board[move] != 0){
 		goto reset;
@@ -543,14 +565,18 @@ void LangkahPemain(int board[10]) {
 	
 	/*Proses*/
 	do{
+		gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
+		gotoxy(15,3);printf("บ Ronde Ke :\t %d     บ",game);
+		gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
 		gotoxy(55,7);printf("Pemain ( O ) \t Komputer ( X )\n");
 		begin:
 			gotoxy(55,25);printf("Masukkan Pilihan :");
 			gotoxy(75,25);scanf("%d", &move);
 			
 			if (board[move] != 0){
-				gotoxy(75, 27);printf("Langkah Tidak Valid\n");
+				gotoxy(55, 27);printf("Langkah Tidak Valid (Ketik Ulang)\n");
 				goto begin;
+				printf("\n");
 			}
 	}while( move >= 10 || move < 1 && board[move] == 0);
 	
@@ -571,12 +597,10 @@ int Mudah3(int GiliranMain){
 	int pilihan, i;
 	
 	
-	/*Proses*/
-	
-	
+	/*Proses*/		
 	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
 
-		
+				
 		if((turn + GiliranMain) % 2 == 0) {
 			LangkahKomputerMudah3(board);
 		}
@@ -590,19 +614,30 @@ int Mudah3(int GiliranMain){
 		case 0:
 			board3(board);
 			gotoxy(65,27);printf("Permainan Imbang!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 		
 		case 1:
 			board3(board);
 			gotoxy(65,27);printf("Kamu Kalah :(\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 			
 		case -1:
 			board3(board);
 			gotoxy(65,27);printf("Kamu Menang!!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 	}
-	getch();
 }
 
 
