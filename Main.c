@@ -13,7 +13,7 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 
 
 /*VARIABEL GLOBAL*/
-char square[10]={'0','1','2','3','4','5','6','7','8','9'};
+//char square[10]={'0','1','2','3','4','5','6','7','8','9'};
 int Generate=1; //variabel global untuk menentukan kecerdasan komputer dan papan yang akan dipanggil
 
 
@@ -22,6 +22,7 @@ void gotoxy(int x, int y);
 void MenuUtama();
 void PilihPapan();
 void board3();
+void board5();
 
 
 void fullscreen(){
@@ -420,148 +421,177 @@ int GuntingKertasBatu(){
 }
 
 
-int CekMenang(){
-//
+int CekMenang(const int board[10]){
+//author	:
 
 //
 //
-
-	/*Cek horizontal*/
 	
-	if (square[1] == square[2] && square[2] == square[3])
-        return 1;
-        
-    else if (square[4] == square[5] && square[5] == square[6])
-        return 1;
-        
-    else if (square[7] == square[8] && square[8] == square[9])
-        return 1;
-    /*Cek Vertikal*/
-    else if (square[1] == square[4] && square[4] == square[7])
-        return 1;
-        
-    else if (square[2] == square[5] && square[5] == square[8])
-        return 1;
-        
-    else if (square[3] == square[6] && square[6] == square[9])
-        return 1;
-    /*Cek Diagonal*/
-    else if (square[1] == square[5] && square[5] == square[9])
-        return 1;
-        
-    else if (square[3] == square[5] && square[5] == square[7])
-        return 1;
-	else if(square[1] != '1' && square[2] != '2' && square[3] != '3' && square[4] != '4' && square[5] != '5' && square[6] != '6' && square[7] != '7' && square[8] != '8' && square[9] != '9'){
-    	return 2;
+	/*Deklarasi*/
+	unsigned wins[8][3]={{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
+	int i;
+	
+	/*Proses*/
+	for(i = 0; i < 8; ++i){
+		if (board[wins[i][0]] != 0 &&
+           board[wins[i][0]] == board[wins[i][1]] &&
+           board[wins[i][0]] == board[wins[i][2]])
+			return board[wins[i][2]];
 	}
-	else{
-		return 0;
-	}
+	return 0;
 }
 
-int LangkahKomputer(){
-//	
+
+int minimax(int board[10], int player) {
+//author	: Github: Matthew Steel, 2009
+
+// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputermenentukan pergerakan komputer dengan menelurusipergerakan komputer
+//board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: parameter input bertipe integer dengan passing parameter passing by valuepassing 
+
+    //How is the position like for player (their turn) on board?
+    int winner = CekMenang(board);
+    if(winner != 0) return winner*player;
+
+    int move = -1;
+    int score = -2;//Losing moves are preferred to no move
+    int i;
+    for(i = 1; i < 10; ++i) {//For all moves,
+        if(board[i] == 0) {//If legal,
+            board[i] = player;//Try the move
+            int thisScore = -minimax(board, player*-1);
+            if(thisScore > score) {
+                score = thisScore;
+                move = i;
+            }//Pick the one that's worst for the opponent
+            board[i] = 0;//Reset board after try
+        }
+    }
+    if(move == -1) return 0;
+    return score;
+}
+
+
+void LangkahKomputer(int board[10]){
+//	author	: Github Matthew Steel
 	
+// board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
 //
-//
-    srand(time(0));
-	char random;
-	char value;
-	random = "123456789" [rand() % 9];
-	value = random;
+    
+	/*Deklarasi*/
+	int move = -1;
+	int score = -2;
+	int i;
+
+	/*Proses*/
+	for(i=1; i < 10; ++i) {
+		
+		if(board[i] == 0){
+			board[i] = 1;
+			int tempScore = -minimax(board, -1);
+			board[i] = 0;
+			if (tempScore > score) {
+				score = tempScore;
+				move = i;	
+			}
+		}
+	}
 	
-	return value ;
+	board[move] = 1;
+}
+
+
+void LangkahPemain(int board[10]) {
+// author	:
+
+// board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
+//
+
+	/*Deklarsi*/
+	int move = 0;
+	
+	/*Proses*/
+	do{
+		printf("Kamu : O, Komputer : 'X'\n");
+		begin:
+			printf("Masukkan Pilihan :");
+			scanf("%d", &move);
+			
+			if (board[move] != 0){
+				printf("Langkah Tidak Valid\n");
+				goto begin;
+			}
+	}while( move >= 10 || move < 1 && board[move] == 0);
+	
+	board[move] = -1;
 }
 
 
 int Mudah3(int GiliranMain){
-// author	:
-
-//
-//
-	unsigned turn;
-	int pilihan, i,win;
-	
-	for(turn = 0; turn < 9 && win == 0; turn++){
-
-		
-		if((turn+GiliranMain) %2 == 0){
-			/*computer turn*/
-			for(i = 1; i<10; i++){
-				if(LangkahKomputer() == square[i] && square[i] != 'O'){
-					square[i]='X';
-					break;
-				}
-				else if(LangkahKomputer() == square[i] && square[i] != 'O'){
-					square[i]='X';
-					break;
-				}
-			}
-		}
-		else{
-			begin:
-			board3();
-			
-			scanf("%d",&pilihan);
-			if (pilihan == 1 && square[1] == '1')
-				square[1]='O';
-			
-			else if(pilihan == 2 && square[2] == '2')
-				square[2]='O';
-			
-			else if(pilihan == 3 && square[3] == '3')
-				square[3]='O';
-			
-			else if(pilihan == 4 && square[4] == '4')
-				square[4]='O';
-			
-			else if(pilihan == 5 && square[5] == '5')
-				square[5]='O';
-			
-			else if(pilihan == 6 && square[6] == '6')
-				square[6]='O';
-			
-			else if(pilihan == 7 && square[7] == '7')
-				square[7]='O';
-			
-			else if(pilihan == 8 && square[8] == '8')
-				square[8]='O';
-			
-			else if(pilihan == 9 && square[9] == '9')
-				square[9]='O';
-			
-			else{
-				printf("Langkah Tidak Valid\n");
-				getch();
-				goto begin;
-			}
-			win=CekMenang();
-			board3();
-		}
-	}
-	if (win == 1){
-		printf("Kamu Menang!\n");
-	}
-	else if(win == 2){
-		printf("Kamu Kalah\n");
-	}
-getch();
+	exit(1);
 }
+
 
 int Mudah5(int GiliranMain){
 	exit(1);
 }
 
+
 int Menengah3(int GiliranMain){
 	exit(1);
 }
+
 
 int Menengah5(int GiliranMain){
 	exit(1);
 }
 
+
 int Sulit3(int GiliranMain){
-	exit(1);
+// author	:
+
+//
+//
+	/*Deklarasi*/
+	int board[10] = {0,0,0,0,0,0,0,0,0,0};
+	
+	unsigned turn;
+	
+	int pilihan, i;
+	
+	
+	/*Proses*/
+	
+	
+	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
+
+		
+		if((turn + GiliranMain) % 2 == 0) {
+			LangkahKomputer(board);
+		}
+		else {
+			board3(board);
+			LangkahPemain(board);
+		}
+	}
+	
+	switch(CekMenang(board)) {
+		case 0:
+			board3(board);
+			printf("Draw\n");
+			break;
+		
+		case 1:
+			board3(board);
+			printf("Kamu Kalah\n");
+			break;
+			
+		case -1:
+			board3(board);
+			printf("Kamu Menang!!\n");
+			break;
+	}
+	getch();
 }
 
 
@@ -570,7 +600,21 @@ int Sulit5(int GiliranMain){
 }
 
 
-void board3(){
+char gridChar(int i){
+	
+	switch(i){
+		case -1:
+			return 'O';
+		case 0:
+			return ' ';
+		case 1:
+			return 'X';
+	}	
+	
+}
+
+
+void board3(int b[10]) {
 //Author	: Irsyad Muhammad
 
 //Procedure untuk menampilkan papan ukuran 3x3
@@ -580,19 +624,19 @@ void board3(){
 	system("CLS");
 	/*TAMPILAN PAPAN*/
 	gotoxy(70,10);printf("|     |\n");
-	gotoxy(65,11);printf("  %c  |  %c  |  %c\n", square[1],square[2],square[3]);
+	gotoxy(65,11);printf("  %c  |  %c  |  %c\n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]));
 	gotoxy(65,12);printf("_____|_____|_____\n");
 	gotoxy(70,13);printf("|     |\n");
-	gotoxy(65,14);printf("  %c  |  %c  |  %c\n",square[4],square[5],square[6]);	
+	gotoxy(65,14);printf("  %c  |  %c  |  %c\n",gridChar(b[4]), gridChar(b[5]), gridChar(b[6]));	
 	gotoxy(65,15);printf("_____|_____|_____\n");
 	gotoxy(70,16);printf("|     |\n");
-	gotoxy(65,17);printf("  %c  |  %c  |  %c\n",square[7],square[8],square[9]);
+	gotoxy(65,17);printf("  %c  |  %c  |  %c\n",gridChar(b[7]), gridChar(b[8]), gridChar(b[9]));
 	gotoxy(70,18);printf("|     |\n");
 	/*END TAMPILAN PAPAN*/
 }
 
 
-void board5(){
+void board5() {
 //Author	: Irsyad Muhammad
 
 //Procedure untuk menampilkan papan ukuran 5x5
@@ -619,7 +663,7 @@ void board5(){
 }
 
 
-void CaraBermain(){
+void CaraBermain() {
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan tampilan cara bermain dan aturan
@@ -647,7 +691,7 @@ void CaraBermain(){
 }
 
 
-void AboutUs(){
+void AboutUs() {
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan tampilan about us (credits permainan)
@@ -675,7 +719,7 @@ void AboutUs(){
 }
 
 
-void timer(float persentase){
+void timer(float persentase) {
 //author:
 
 //Modul untuk 
@@ -689,7 +733,7 @@ void timer(float persentase){
 }
 
 
-void loading(){
+void loading() {
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan tampilan loading
@@ -724,7 +768,7 @@ void loading(){
 }
 
 
-void MenuUtama(){
+void MenuUtama() {
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan mneu utama dalam permainan
@@ -775,9 +819,7 @@ void MenuUtama(){
 	}
 }
 
-int main(){
+int main() {
 	fullscreen();
 	MenuUtama();
-	
-	
 }
