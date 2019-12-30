@@ -257,13 +257,21 @@ int GuntingKertasBatu(){
 							Mudah5(1);
 						
 						case 6:
-							Menengah3(1);
+							do{
+								Menengah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(1);
 							
 						case 9:
-							Sulit3(1);
+							do{
+								Sulit3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 15:
 							Sulit5(1);
@@ -284,18 +292,27 @@ int GuntingKertasBatu(){
 								gotoxy(60,29);system("pause");
 								game++;
 							}while (game < 11);
+							
 						case 5:
 							Mudah5(2);
 						
 						case 6:
-							Menengah3(2);
+							do{
+								Menengah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(2);
 							
 						case 9:
-							Sulit3(2);
-							
+							do{
+								Sulit3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
+						
 						case 15:
 							Sulit5(2);
 					}
@@ -323,13 +340,21 @@ int GuntingKertasBatu(){
 							Mudah5(2);
 						
 						case 6:
-							Menengah3(2);
+							do{
+								Menengah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(2);
 							
 						case 9:
-							Sulit3(2);
+							do{
+								Sulit3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 15:
 							Sulit5(2);
@@ -360,13 +385,21 @@ int GuntingKertasBatu(){
 							Mudah5(1);
 						
 						case 6:
-							Menengah3(1);
+							do{
+								Menengah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(1);
 							
 						case 9:
-							Sulit3(1);
+							do{
+								Sulit3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 15:
 							Sulit5(1);
@@ -389,17 +422,26 @@ int GuntingKertasBatu(){
 								gotoxy(60,29);system("pause");
 								game++;
 							}while (game < 11);
+							
 						case 5:
 							Mudah5(1);
 						
 						case 6:
-							Menengah3(1);
+							do{
+								Menengah3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(1);
 							
 						case 9:
-							Sulit3(1);
+							do{
+								Sulit3(1);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 15:
 							Sulit5(1);
@@ -419,17 +461,26 @@ int GuntingKertasBatu(){
 								gotoxy(60,29);system("pause");
 								game++;
 							}while (game < 11);
+							
 						case 5:
 							Mudah5(2);
 						
 						case 6:
-							Menengah3(2);
+							do{
+								Menengah3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 10:
 							Menengah5(2);
 							
 						case 9:
-							Sulit3(2);
+							do{
+								Sulit3(2);
+								gotoxy(60,29);system("pause");
+								game++;
+							}while (game < 11);	
 							
 						case 15:
 							Sulit5(2);
@@ -565,16 +616,19 @@ void LangkahPemain(int board[10]) {
 	
 	/*Proses*/
 	do{
+		begin:
+		board3(board);
 		gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
 		gotoxy(15,3);printf("บ Ronde Ke :\t %d     บ",game);
 		gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
 		gotoxy(55,7);printf("Pemain ( O ) \t Komputer ( X )\n");
-		begin:
+		
 			gotoxy(55,25);printf("Masukkan Pilihan :");
 			gotoxy(75,25);scanf("%d", &move);
 			
 			if (board[move] != 0){
 				gotoxy(55, 27);printf("Langkah Tidak Valid (Ketik Ulang)\n");
+				getch();
 				goto begin;
 				printf("\n");
 			}
@@ -605,7 +659,6 @@ int Mudah3(int GiliranMain){
 			LangkahKomputerMudah3(board);
 		}
 		else {
-			board3(board);
 			LangkahPemain(board);
 		}
 	}
@@ -674,7 +727,6 @@ int Menengah3(int GiliranMain){
 			}
 		}
 		else {
-			board3(board);
 			LangkahPemain(board);
 		}
 	}
@@ -727,7 +779,6 @@ int Sulit3(int GiliranMain){
 			LangkahKomputerSulit3(board);
 		}
 		else {
-			board3(board);
 			LangkahPemain(board);
 		}
 	}
