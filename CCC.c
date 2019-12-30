@@ -22,7 +22,8 @@ int game = 1; //variabel global untuk menentukan permainan sedang berada di rond
 void gotoxy(int x, int y);
 void MenuUtama();
 void PilihPapan();
-void board3();
+void DisplayPemain(int board[10]);
+void board3(int board[10]);
 void board5();
 
 
@@ -249,7 +250,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 						
@@ -259,7 +260,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -269,7 +270,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -289,7 +290,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 							
@@ -299,7 +300,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -309,7 +310,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 						
@@ -332,7 +333,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 						
@@ -342,7 +343,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -352,7 +353,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -377,7 +378,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 						
@@ -387,7 +388,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -397,7 +398,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -419,7 +420,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 							
@@ -429,7 +430,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -439,7 +440,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(1);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -458,7 +459,7 @@ int GuntingKertasBatu(){
 						case 3: 
 							do{
 								Mudah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);
 							
@@ -468,7 +469,7 @@ int GuntingKertasBatu(){
 						case 6:
 							do{
 								Menengah3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -478,7 +479,7 @@ int GuntingKertasBatu(){
 						case 9:
 							do{
 								Sulit3(2);
-								gotoxy(60,29);system("pause");
+								gotoxy(45,29);system("pause");
 								game++;
 							}while (game < 11);	
 							
@@ -605,6 +606,34 @@ void LangkahKomputerSulit3(int board[10]){
 }
 
 
+void DisplayPemain(int board[10]){
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan permainan board 3x3
+//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
+
+//I.S	:Tampilan akan 
+//F.S	: Pada layar ditampilkan tampilan berupa papan 3x3, ronde, map permainan, dan timer
+	
+	/*Deklarasi*/
+	int y; //variabel untuk menentukan koordinat y
+	
+	/*TAMPILAN SAAT PERMAINANA MULAI*/
+	
+	board3(board);
+	gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
+	gotoxy(39,3);printf("บ");
+	gotoxy(15,3);printf("บ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
+	gotoxy(43,7);printf("Pemain ( O )        Komputer ( X )\n");
+	gotoxy(145,7);printf("Map");
+	
+	
+	for(y = 0; y < 48; y++){
+		gotoxy(125,y);printf("บ");
+	}
+}
+
 void LangkahPemain(int board[10]) {
 // author	:
 
@@ -614,21 +643,19 @@ void LangkahPemain(int board[10]) {
 	/*Deklarsi*/
 	int move = 0;
 	
+	
 	/*Proses*/
 	do{
 		begin:
-		board3(board);
-		gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
-		gotoxy(15,3);printf("บ Ronde Ke :\t %d     บ",game);
-		gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
-		gotoxy(55,7);printf("Pemain ( O ) \t Komputer ( X )\n");
 		
-			gotoxy(55,25);printf("Masukkan Pilihan :");
-			gotoxy(75,25);scanf("%d", &move);
+			DisplayPemain(board);
+		
+			gotoxy(45,25);printf("Masukkan Pilihan :");
+			gotoxy(65,25);scanf("%d", &move);
 			
 			if (board[move] != 0){
-				gotoxy(55, 27);printf("Langkah Tidak Valid (Ketik Ulang)\n");
-				getch();
+				gotoxy(45, 27);printf("Langkah Tidak Valid!\n");
+				gotoxy(65, 27);getch();
 				goto begin;
 				printf("\n");
 			}
@@ -650,7 +677,6 @@ int Mudah3(int GiliranMain){
 	
 	int pilihan, i;
 	
-	
 	/*Proses*/		
 	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
 
@@ -665,8 +691,8 @@ int Mudah3(int GiliranMain){
 	
 	switch(CekMenang(board)) {
 		case 0:
-			board3(board);
-			gotoxy(65,27);printf("Permainan Imbang!\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Permainan Imbang!\n");
 			if (game == 11){
 				system("CLS");
 				/*Panggil modul score*/
@@ -674,8 +700,8 @@ int Mudah3(int GiliranMain){
 			break;
 		
 		case 1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Kalah :(\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Kamu Kalah :(\n");
 			if (game == 11){
 				system("CLS");
 				/*Panggil modul score*/
@@ -683,8 +709,8 @@ int Mudah3(int GiliranMain){
 			break;
 			
 		case -1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Menang!!\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Kamu Menang!!\n");
 			if (game == 11){
 				system("CLS");
 				/*Panggil modul score*/
@@ -733,21 +759,32 @@ int Menengah3(int GiliranMain){
 	
 	switch(CekMenang(board)) {
 		case 0:
-			board3(board);
-			gotoxy(65,27);printf("Permainan Imbang!\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Permainan Imbang!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 		
 		case 1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Kalah :(\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Kamu Kalah :(\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 			
 		case -1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Menang!! Luar Biasa!!\n");
+			DisplayPemain(board);
+			gotoxy(45,27);printf("Kamu Menang!!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 	}
-	getch();
 }
 
 
@@ -834,18 +871,33 @@ void board3(int b[10]) {
 //I.S	: Layar menampilkan pilihan sebelum modul board3
 //F.S	: Ditampilkan papan dengan grid 3x3
 	
+	int x = 50;
 	system("CLS");
-	/*TAMPILAN PAPAN*/
-	gotoxy(70,10);printf("|     |\n");
-	gotoxy(65,11);printf("  %c  |  %c  |  %c\n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]));
-	gotoxy(65,12);printf("_____|_____|_____\n");
-	gotoxy(70,13);printf("|     |\n");
-	gotoxy(65,14);printf("  %c  |  %c  |  %c\n",gridChar(b[4]), gridChar(b[5]), gridChar(b[6]));	
-	gotoxy(65,15);printf("_____|_____|_____\n");
-	gotoxy(70,16);printf("|     |\n");
-	gotoxy(65,17);printf("  %c  |  %c  |  %c\n",gridChar(b[7]), gridChar(b[8]), gridChar(b[9]));
-	gotoxy(70,18);printf("|     |\n");
-	/*END TAMPILAN PAPAN*/
+	
+	/*TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
+	gotoxy(x,11);printf("     |     |\n");
+	gotoxy(x,12);printf("  %c  |  %c  |  %c\n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]));
+	gotoxy(x,13);printf("_____|_____|_____\n");
+	gotoxy(x,14);printf("     |     |\n");
+	gotoxy(x,15);printf("  %c  |  %c  |  %c\n",gridChar(b[4]), gridChar(b[5]), gridChar(b[6]));	
+	gotoxy(x,16);printf("_____|_____|_____\n");
+	gotoxy(x,17);printf("     |     |\n");
+	gotoxy(x,18);printf("  %c  |  %c  |  %c\n",gridChar(b[7]), gridChar(b[8]), gridChar(b[9]));
+	gotoxy(x,19);printf("     |     |\n");
+	/*END TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
+	
+	
+	/*TAMPILAN PAPAN MAP*/
+	gotoxy(143,11);printf("|     |\n");
+	gotoxy(138,12);printf("  1  |  2  |  3\n");
+	gotoxy(138,13);printf("_____|_____|_____\n");
+	gotoxy(143,14);printf("|     |\n");
+	gotoxy(138,15);printf("  4  |  5  |  6\n");	
+	gotoxy(138,16);printf("_____|_____|_____\n");
+	gotoxy(143,17);printf("|     |\n");
+	gotoxy(138,18);printf("  7  |  8  |  9\n");
+	gotoxy(138,19);printf("     |     |\n");
+	/*END TAMPILAN PAPAN MAP*/
 }
 
 
