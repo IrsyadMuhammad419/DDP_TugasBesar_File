@@ -22,7 +22,7 @@ int game = 1; //variabel global untuk menentukan permainan sedang berada di rond
 void gotoxy(int x, int y);
 void MenuUtama();
 void PilihPapan();
-void DisplayPemain(int board[10]);
+void DisplayPemain3(int board[10]);
 void board3(int board[10]);
 void board5();
 
@@ -255,8 +255,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 						
 						case 5:
-							Mudah5(1);
-						
+							do{
+								Mudah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+							
 						case 6:
 							do{
 								Menengah3(1);
@@ -265,7 +269,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(1);
+							do{
+								Menengah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 							
 						case 9:
 							do{
@@ -275,7 +283,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 15:
-							Sulit5(1);
+							do{
+								Sulit5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 					}
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
@@ -295,8 +307,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 							
 						case 5:
-							Mudah5(2);
-						
+							do{
+								Mudah5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+							
 						case 6:
 							do{
 								Menengah3(2);
@@ -305,7 +321,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(2);
+							do{
+								Menengah5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 							
 						case 9:
 							do{
@@ -315,7 +335,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 						
 						case 15:
+							do{
 							Sulit5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
 					}
 	            }
 	        }
@@ -338,7 +362,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 						
 						case 5:
-							Mudah5(2);
+							do{
+								Mudah5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 						
 						case 6:
 							do{
@@ -348,8 +376,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(2);
-							
+							do{
+								Menengah5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+								
 						case 9:
 							do{
 								Sulit3(2);
@@ -358,7 +390,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 15:
-							Sulit5(2);
+							do{
+								Sulit5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
 					}	                
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
@@ -383,8 +419,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 						
 						case 5:
-							Mudah5(1);
-						
+							do{
+								Mudah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+							
 						case 6:
 							do{
 								Menengah3(1);
@@ -393,7 +433,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(1);
+							do{
+								Menengah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 							
 						case 9:
 							do{
@@ -403,7 +447,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 15:
-							Sulit5(1);
+							do{
+								Sulit5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
 					}
 	            }
 	        }
@@ -425,8 +473,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 							
 						case 5:
-							Mudah5(1);
-						
+							do{
+								Mudah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+							
 						case 6:
 							do{
 								Menengah3(1);
@@ -435,7 +487,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(1);
+							do{
+								Menengah5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
 							
 						case 9:
 							do{
@@ -445,7 +501,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 15:
-							Sulit5(1);
+							do{
+								Sulit5(1);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
 					}
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
@@ -464,8 +524,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);
 							
 						case 5:
-							Mudah5(2);
-						
+							do{
+								Mudah5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);
+							
 						case 6:
 							do{
 								Menengah3(2);
@@ -474,8 +538,12 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 10:
-							Menengah5(2);
-							
+							do{
+								Menengah5(2);	
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
+								
 						case 9:
 							do{
 								Sulit3(2);
@@ -484,7 +552,11 @@ int GuntingKertasBatu(){
 							}while (game < 11);	
 							
 						case 15:
-							Sulit5(2);
+							do{	
+								Sulit5(2);
+								gotoxy(45,29);system("pause");
+								game++;
+							}while (game < 11);	
 					}
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
@@ -524,6 +596,33 @@ int CekMenang(const int board[10]){
 }
 
 
+int CekMenang5(const int board[26]){
+//author	: Hanifah Ghina Nabila
+
+//
+//
+	
+	/*Deklarasi*/
+//	unsigned wins[28][4]={{1,2,3,4},{2,3,4,5},{6,7,8,9},{7,8,9,10},{11,12,13,14},{12,13,14,15},{16,17,18,19},{17,18,19,20},{21,22,23,24},
+//	{22,23,24,25},{1,6,11,16},{6,11,16,21},{2,7,12,17},{7,12,17,22},{3,8,13,18},{8,13,18,23},{4,9,14,19},{9,14,19,24},
+//	{5,10,15,20},{10,15,20,25},{6,12,18,24},{1,7,13,19},{7,13,19,25},{2,8,14,20},{4,8,12,16},{5,9,13,17},{9,13,17,21},{10,14,18,22}};
+	unsigned wins[12][5] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25},{1,6,11,16,21},{2,7,12,17,22},
+	{3,8,13,18,23},{4,9,14,19,24},{5,10,15,20,25},{1,7,13,19,25},{5,9,13,17,21}};
+	int i;
+	
+	/*Proses*/
+	for(i = 0; i < 12; ++i){
+		if (board[wins[i][0]] != 0 &&
+           board[wins[i][0]] == board[wins[i][1]] &&
+           board[wins[i][0]] == board[wins[i][2]] &&
+           board[wins[i][0]] == board[wins[i][3]] &&
+           board[wins[i][0]] == board[wins[i][4]])
+			return board[wins[i][4]];
+	}
+	return 0;
+}
+
+
 int minimax(int board[10], int player) {
 //author	: Github: Matthew Steel, 2009
 
@@ -554,6 +653,36 @@ int minimax(int board[10], int player) {
 }
 
 
+int minimax5(int board[26], int player) {
+//author	: Github: Matthew Steel, 2009
+
+// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputermenentukan pergerakan komputer dengan menelurusipergerakan komputer
+//board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: parameter input bertipe integer dengan passing parameter passing by valuepassing 
+
+    //How is the position like for player (their turn) on board?
+    int winner = CekMenang5(board);
+    if(winner != 0) return winner*player;
+
+    int move = -1;
+    int score = -2;//Losing moves are preferred to no move
+    int i;
+    for(i = 1; i < 26; ++i) {//For all moves,
+        if(board[i] == 0) {//If legal,
+            board[i] = player;//Try the move
+            int thisScore = -minimax5(board, player*-1);
+            if(thisScore > score) {
+                score = thisScore;
+                move = i;
+            }//Pick the one that's worst for the opponent
+            board[i] = 0;//Reset board after try
+        }
+    }
+    if(move == -1) return 0;
+    return score;
+}
+
+
 void LangkahKomputerMudah3(int board[10]) {
 //	author	: Irsyad Muhammad
 	
@@ -567,6 +696,29 @@ void LangkahKomputerMudah3(int board[10]) {
 	/*Proses*/
 	reset:
 	move = 1 + rand()% 9; // 1 adalah range angka terkecil yg akan di random, dan 9 adalah angka terbesar yang akan dirandom
+		
+	if(board[move] != 0){
+		goto reset;
+	}
+	else{
+		board[move] = 1;
+	}
+}
+
+
+void LangkahKomputerMudah5(int board[26]){
+//	author	: Hanifah Ghina Nabila
+	
+// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
+//
+    
+	/*Deklarasi*/
+	int i;
+	int move;
+
+	/*Proses*/
+	reset:
+	move = 1 + rand()% 25; // 1 adalah range angka terkecil yg akan di random, dan 25 adalah angka terbesar yang akan dirandom
 		
 	if(board[move] != 0){
 		goto reset;
@@ -606,7 +758,36 @@ void LangkahKomputerSulit3(int board[10]){
 }
 
 
-void DisplayPemain(int board[10]){
+void LangkahKomputerSulit5(int board[26]) {
+//	author	: Irsyad Muhammad
+	
+// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
+//
+    
+	/*Deklarasi*/
+	int move = -1;
+	int score = -2;
+	int i;
+
+	/*Proses*/
+	for(i=1; i < 26; ++i) {
+		
+		if(board[i] == 0){
+			board[i] = 1;
+			int tempScore = -minimax5(board, -1);
+			board[i] = 0;
+			if (tempScore > score) {
+				score = tempScore;
+				move = i;	
+			}
+		}
+	}
+	
+	board[move] = 1;
+}
+
+
+void DisplayPemain3(int board[10]){
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan tampilan permainan board 3x3
@@ -625,8 +806,8 @@ void DisplayPemain(int board[10]){
 	gotoxy(39,3);printf("บ");
 	gotoxy(15,3);printf("บ Ronde Ke :\t %d",game);
 	gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
-	gotoxy(43,7);printf("Pemain ( O )        Komputer ( X )\n");
-	gotoxy(145,7);printf("Map");
+	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
+	gotoxy(145,10);printf("Map");
 	
 	
 	for(y = 0; y < 48; y++){
@@ -634,7 +815,37 @@ void DisplayPemain(int board[10]){
 	}
 }
 
-void LangkahPemain(int board[10]) {
+
+void DisplayPemain5(int board[26]){
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan permainan board 3x3
+//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
+
+//I.S	:Tampilan akan 
+//F.S	: Pada layar ditampilkan tampilan berupa papan 3x3, ronde, map permainan, dan timer
+	
+	/*Deklarasi*/
+	int y; //variabel untuk menentukan koordinat y
+	
+	/*TAMPILAN SAAT PERMAINANA MULAI*/
+	
+	board5(board);
+	gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
+	gotoxy(39,3);printf("บ");
+	gotoxy(15,3);printf("บ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
+	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
+	gotoxy(145,10);printf("Map");
+	
+	
+	for(y = 0; y < 48; y++){
+		gotoxy(125,y);printf("บ");
+	}
+}
+
+
+void LangkahPemain3(int board[10]) {
 // author	:
 
 // board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
@@ -648,18 +859,49 @@ void LangkahPemain(int board[10]) {
 	do{
 		begin:
 		
-			DisplayPemain(board);
+			DisplayPemain3(board);
 		
-			gotoxy(45,25);printf("Masukkan Pilihan :");
-			gotoxy(65,25);scanf("%d", &move);
+			gotoxy(45,28);printf("Masukkan Pilihan :");
+			gotoxy(65,28);scanf("%d", &move);
 			
 			if (board[move] != 0){
-				gotoxy(45, 27);printf("Langkah Tidak Valid!\n");
-				gotoxy(65, 27);getch();
+				gotoxy(45, 32);printf("Langkah Tidak Valid!\n");
+				gotoxy(65, 32);getch();
 				goto begin;
 				printf("\n");
 			}
 	}while( move >= 10 || move < 1 && board[move] == 0);
+	
+	board[move] = -1;
+}
+
+
+void LangkahPemain5(int board[26]) {
+// author	:
+
+// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
+//
+
+	/*Deklarsi*/
+	int move = 0;
+	
+	
+	/*Proses*/
+	do{
+		begin:
+		
+			DisplayPemain5(board);
+		
+			gotoxy(45,28);printf("Masukkan Pilihan :");
+			gotoxy(65,28);scanf("%d", &move);
+			
+			if (board[move] != 0){
+				gotoxy(45, 32);printf("Langkah Tidak Valid!\n");
+				gotoxy(65, 32);getch();
+				goto begin;
+				printf("\n");
+			}
+	}while( move >= 26 || move < 1 && board[move] == 0);
 	
 	board[move] = -1;
 }
@@ -675,7 +917,7 @@ int Mudah3(int GiliranMain){
 	
 	unsigned turn;
 	
-	int pilihan, i;
+	int pilihan;
 	
 	/*Proses*/		
 	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
@@ -685,13 +927,13 @@ int Mudah3(int GiliranMain){
 			LangkahKomputerMudah3(board);
 		}
 		else {
-			LangkahPemain(board);
+			LangkahPemain3(board);
 		}
 	}
 	
 	switch(CekMenang(board)) {
 		case 0:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
 			if (game == 11){
 				system("CLS");
@@ -700,7 +942,7 @@ int Mudah3(int GiliranMain){
 			break;
 		
 		case 1:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Kamu Kalah :(\n");
 			if (game == 11){
 				system("CLS");
@@ -709,7 +951,7 @@ int Mudah3(int GiliranMain){
 			break;
 			
 		case -1:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
 			if (game == 11){
 				system("CLS");
@@ -721,7 +963,57 @@ int Mudah3(int GiliranMain){
 
 
 int Mudah5(int GiliranMain){
-	exit(1);
+// author	:
+
+//
+//
+	/*Deklarasi*/
+	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	
+	unsigned turn;
+	
+	int pilihan;
+	
+	/*Proses*/		
+	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
+
+				
+		if((turn + GiliranMain) % 2 == 0) {
+			LangkahKomputerMudah5(board);
+		}
+		else {
+			LangkahPemain5(board);
+		}
+	}
+	
+	switch(CekMenang5(board)) {
+		case 0:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Permainan Imbang!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+		
+		case 1:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Kamu Kalah :(\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+			
+		case -1:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Kamu Menang!!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+	}
 }
 
 
@@ -735,7 +1027,7 @@ int Menengah3(int GiliranMain){
 	
 	unsigned turn;
 	
-	int pilihan, i;
+	int pilihan;
 	
 	
 	/*Proses*/
@@ -753,13 +1045,13 @@ int Menengah3(int GiliranMain){
 			}
 		}
 		else {
-			LangkahPemain(board);
+			LangkahPemain3(board);
 		}
 	}
 	
 	switch(CekMenang(board)) {
 		case 0:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
 			if (game == 11){
 				system("CLS");
@@ -768,7 +1060,7 @@ int Menengah3(int GiliranMain){
 			break;
 		
 		case 1:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Kamu Kalah :(\n");
 			if (game == 11){
 				system("CLS");
@@ -777,7 +1069,7 @@ int Menengah3(int GiliranMain){
 			break;
 			
 		case -1:
-			DisplayPemain(board);
+			DisplayPemain3(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
 			if (game == 11){
 				system("CLS");
@@ -803,7 +1095,7 @@ int Sulit3(int GiliranMain){
 	
 	unsigned turn;
 	
-	int pilihan, i;
+	int pilihan;
 	
 	
 	/*Proses*/
@@ -816,32 +1108,93 @@ int Sulit3(int GiliranMain){
 			LangkahKomputerSulit3(board);
 		}
 		else {
-			LangkahPemain(board);
+			LangkahPemain3(board);
 		}
 	}
 	
 	switch(CekMenang(board)) {
 		case 0:
-			board3(board);
-			gotoxy(65,27);printf("Permainan Imbang!\n");
+			DisplayPemain3(board);
+			gotoxy(45,27);printf("Permainan Imbang!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 		
 		case 1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Kalah :(\n");
+			DisplayPemain3(board);
+			gotoxy(45,27);printf("Kamu Kalah :(\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 			
 		case -1:
-			board3(board);
-			gotoxy(65,27);printf("Kamu Menang!!\n");
+			DisplayPemain3(board);
+			gotoxy(45,27);printf("Kamu Menang!!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
 			break;
 	}
-	getch();
 }
 
 
 int Sulit5(int GiliranMain){
-	exit(1);
+// author	: Irsyad Muhammad
+
+//
+//
+	/*Deklarasi*/
+	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	
+	unsigned turn;
+	
+	int pilihan;
+	
+	/*Proses*/		
+	for(turn = 0; turn < 25 && CekMenang(board) == 0; ++turn){
+
+				
+		if((turn + GiliranMain) % 2 == 0) {
+			LangkahKomputerSulit5(board);
+		}
+		else {
+			LangkahPemain5(board);
+		}
+	}
+	
+	switch(CekMenang5(board)) {
+		case 0:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Permainan Imbang!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+		
+		case 1:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Kamu Kalah :(\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+			
+		case -1:
+			DisplayPemain5(board);
+			gotoxy(45,27);printf("Kamu Menang!!\n");
+			if (game == 11){
+				system("CLS");
+				/*Panggil modul score*/
+			}
+			break;
+	}
 }
 
 
@@ -875,18 +1228,18 @@ void board3(int b[10]) {
 	system("CLS");
 	
 	/*TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
-	gotoxy(x,11);printf("     |     |\n");
-	gotoxy(x,12);printf("  %c  |  %c  |  %c\n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]));
-	gotoxy(x,13);printf("_____|_____|_____\n");
-	gotoxy(x,14);printf("     |     |\n");
-	gotoxy(x,15);printf("  %c  |  %c  |  %c\n",gridChar(b[4]), gridChar(b[5]), gridChar(b[6]));	
-	gotoxy(x,16);printf("_____|_____|_____\n");
-	gotoxy(x,17);printf("     |     |\n");
-	gotoxy(x,18);printf("  %c  |  %c  |  %c\n",gridChar(b[7]), gridChar(b[8]), gridChar(b[9]));
-	gotoxy(x,19);printf("     |     |\n");
+	gotoxy(x,15);printf("     |     |\n");
+	gotoxy(x,16);printf("  %c  |  %c  |  %c\n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]));
+	gotoxy(x,17);printf("_____|_____|_____\n");
+	gotoxy(x,18);printf("     |     |\n");
+	gotoxy(x,19);printf("  %c  |  %c  |  %c\n",gridChar(b[4]), gridChar(b[5]), gridChar(b[6]));	
+	gotoxy(x,20);printf("_____|_____|_____\n");
+	gotoxy(x,21);printf("     |     |\n");
+	gotoxy(x,22);printf("  %c  |  %c  |  %c\n",gridChar(b[7]), gridChar(b[8]), gridChar(b[9]));
+	gotoxy(x,23);printf("     |     |\n");
 	/*END TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
 	
-	
+		
 	/*TAMPILAN PAPAN MAP*/
 	gotoxy(143,11);printf("|     |\n");
 	gotoxy(138,12);printf("  1  |  2  |  3\n");
@@ -901,7 +1254,7 @@ void board3(int b[10]) {
 }
 
 
-void board5() {
+void board5(int b[26]) {
 //Author	: Irsyad Muhammad
 
 //Procedure untuk menampilkan papan ukuran 5x5
@@ -911,19 +1264,19 @@ void board5() {
 	system("CLS");
 	/*TAMPILAN PAPAN*/
 	gotoxy(60,10);printf("|     |     |     |\n");
-	gotoxy(55,11);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n"); //tempat penyimpanan bidak 1-5
+	gotoxy(55,11);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]), gridChar(b[4]), gridChar(b[5])); //tempat penyimpanan bidak 1-5
 	gotoxy(55,12);printf("_____|_____|_____|_____|_____\n");
 	gotoxy(60,13);printf("|     |     |     |\n");
-	gotoxy(55,14);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n");//tempat penyimpanan bidak 6-10
+	gotoxy(55,14);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[6]), gridChar(b[7]), gridChar(b[8]), gridChar(b[9]), gridChar(b[10]));//tempat penyimpanan bidak 6-10
 	gotoxy(55,15);printf("_____|_____|_____|_____|_____\n");
 	gotoxy(60,16);printf("|     |     |     |\n");
-	gotoxy(55,17);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n"); //tempat penyimpanan bidak 11-15
+	gotoxy(55,17);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[11]), gridChar(b[12]), gridChar(b[13]), gridChar(b[14]), gridChar(b[15])); //tempat penyimpanan bidak 11-15
 	gotoxy(55,18);printf("_____|_____|_____|_____|_____\n");
 	gotoxy(60,19);printf("|     |     |     |\n");
-	gotoxy(55,20);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n"); //tempat penyimpanan bidak 16-20
+	gotoxy(55,20);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[16]), gridChar(b[17]), gridChar(b[18]), gridChar(b[19]), gridChar(b[20])); //tempat penyimpanan bidak 16-20
 	gotoxy(55,21);printf("_____|_____|_____|_____|_____\n");
 	gotoxy(60,22);printf("|     |     |     |\n");
-	gotoxy(55,23);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n"); //tempat penyimpanan bidak 21-25
+	gotoxy(55,23);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[21]), gridChar(b[22]), gridChar(b[23]), gridChar(b[24]), gridChar(b[25])); //tempat penyimpanan bidak 21-25
 	gotoxy(60,24);printf("|     |     |     |\n");
 	/*END TAMPILAN PAPAN*/
 }
