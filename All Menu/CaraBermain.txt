@@ -1,0 +1,44 @@
+
+
+								   CARA BERMAIN & PERATURAN
+								
+				
+									  PAPAN 3X3
+
+						1. Pemain diberi simbol 'O' dan komputer diberi simbol 'X'.
+						2. Pemain harus menentukan urutan permainan dengan bermain 
+						   gunting kertas batu melawan komputer dengan menginput angka '1' 
+						   untuk memilih 'gunting', angka '2' untuk memilih 'kertas', angka
+						   '3' untuk memilih 'batu'.Apabila pemain menang, maka akan mendapat
+						   urutan bermain pertama.
+						3. Pemain akan mengisi papan permainan dengan simbol 'O' dengan
+						   menginput angka 1-9.
+						4. Pemain akan menang apabila dapat membentuk deretan 3 simbol
+						   'O' baik vertikal, horizontal ataupun diagonal sebelum komputer
+						   membentuk deretan 3 simbol 'X'.
+
+
+									  PAPAN 5X5
+
+						1. Pemain diberi simbol 'O' dan komputer diberi simbol 'X'.
+						2. Pemain harus menentukan urutan permainan dengan bermain 
+						   gunting kertas batu melawan komputer dengan menginput angka '1' 
+						   untuk memilih 'gunting', angka '2' untuk memilih 'kertas', angka
+						   '3' untuk memilih 'batu'. Apabila pemain menang, maka akan mendapat
+						   urutan bermain pertama.
+						3. Pemain akan mengisi papan permainan dengan simbol 'O' dengan
+						   menginput angka 1-25.
+						4. Pemain akan menang apabila dapat membentuk deretan 5 simbol
+						   'O' baik vertikal, horizontal ataupun diagonal sebelum komputer
+						   membentuk deretan 5 simbol 'X'.
+						
+
+
+								        ATURAN BERMAIN
+
+						1. Dalam 1 permainan terdiri dari 10 putaran.
+						2. Pada saat permainan berjalan, pemain diberikan waktu beberapa detik 
+						   untuk mengisi 1 simbol di papan permainan.
+							2.1 Untuk tingkat kesulitan Mudah diberi waktu 5 detik.
+							2.2 Untuk tingkat kesulitan Menengah diberi waktu 4 detik.
+							2.3 Untuk tingkat kesulitan Sulit diberi waktu 3 detik.
