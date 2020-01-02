@@ -82,44 +82,44 @@ void Judul(){
 	/*TAMPILAN CCC*/
 	
 	/*baris 1*/
-	gotoxy(58,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,5); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,5); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,5); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 2*/
-	gotoxy(58,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,6); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,6); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,6); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 3*/
-	gotoxy(58,7); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,7); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,7); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,7); printf("€€€€€\n");
+	gotoxy(76,7); printf("€€€€€\n");
+	gotoxy(94,7); printf("€€€€€\n");
 	
 	/*baris 4*/
-	gotoxy(58,8); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,8); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,8); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,8); printf("€€€€€\n");
+	gotoxy(76,8); printf("€€€€€\n");
+	gotoxy(94,8); printf("€€€€€\n");
 	
 	/*baris 5*/
-	gotoxy(58,9); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,9); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,9); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,9); printf("€€€€€\n");
+	gotoxy(76,9); printf("€€€€€\n");
+	gotoxy(94,9); printf("€€€€€\n");
 	
 	/*baris 6*/
-	gotoxy(58,10); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,10); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,10); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,10); printf("€€€€€\n");
+	gotoxy(76,10); printf("€€€€€\n");
+	gotoxy(94,10); printf("€€€€€\n");
 		
 	/*baris 7*/
-	gotoxy(58,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,11); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,11); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,11); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 8*/
-	gotoxy(58,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,12); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,12); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,12); printf("€€€€€€€€€€€€\n");
 	/*END TAMPILAN CCC*/
 	
 	/*TAMPILAN CIRCLE CROSS CHALLANGE*/
@@ -632,10 +632,10 @@ void DisplayPemain3(int board[10]){
 	
 	/*TAMPILAN SAAT PERMAINAN MULAI*/
 	board3(board);
-	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
-	gotoxy(39,3);printf("¬∫");
-	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
+	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
+	gotoxy(39,3);printf("∫");
+	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
 	gotoxy(143,25);printf("Status");
@@ -645,7 +645,7 @@ void DisplayPemain3(int board[10]){
 	
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("¬∫");
+		gotoxy(125,y);printf("∫");
 	}
 }
 
@@ -674,10 +674,10 @@ void DisplayPemain5(int board[26]){
 	
 	/*TAMPILAN SAAT PERMAINANA MULAI*/
 	board5(board);
-	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
-	gotoxy(39,3);printf("¬∫");
-	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
+	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
+	gotoxy(39,3);printf("∫");
+	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
 	gotoxy(143,31);printf("Status");
@@ -687,7 +687,7 @@ void DisplayPemain5(int board[26]){
 	
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("¬∫");
+		gotoxy(125,y);printf("∫");
 	}
 }
 
@@ -1010,7 +1010,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-//				MenuUtama();
+				MenuUtama();
 				
 			}
 			break;
@@ -1022,7 +1022,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-//				MenuUtama();
+				MenuUtama();
 			}
 			break;
 			
@@ -1033,7 +1033,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-//				MenuUtama();
+				MenuUtama();
 			}
 			break;
 	}
@@ -1043,8 +1043,10 @@ int Sulit3(int GiliranMain){
 int Sulit5(int GiliranMain){
 // author	: Irsyad Muhammad
 
-//
-//
+//Modul untuk memulai permaianan dengan level sulit papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
 	/*Deklarasi*/
 	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	
@@ -1100,6 +1102,7 @@ int Sulit5(int GiliranMain){
 	}
 }
 
+
 void HitungSkor(){
 //author	: Hanifah Ghina Nabila
 
@@ -1151,23 +1154,12 @@ void SimpanSkor(int skor){
 	DataSkor = fopen("DataSkorCCC.txt", "ab");
 	gotoxy(70,22);printf("Skor kamu : %d", skor);
 	data.skor = skor;
+
 	gotoxy(65,24);printf("Masukkan nama kamu : ");
-	gotoxy(86,24);scanf("%s\n", &data.NamaPemain);
+	gotoxy(86,24);scanf("%s", &data.NamaPemain);
 	
 	fprintf(DataSkor, "%s - %d\n", data.NamaPemain, data.skor);
 	fclose(DataSkor);
-	
-	SortScore();
-//	gotoxy(65,27);printf("Apakah kamu ingin bermain lagi?\n");
-//	gotoxy(70,28);printf("[1] YA\n");
-//	gotoxy(70,29);printf("[2] TIDAK");
-//	gotoxy(65,30);printf("Masukkan pilihanmu : ");
-//	gotoxy(86,30);scanf("%d", pilihan);
-//	if(pilihan==1){
-//		MenuUtama();
-//	}else{
-//		exit(1);
-//	}
 	
 }
 
@@ -1416,22 +1408,22 @@ void loading() {
 	gotoxy(75,20); printf("Harap Tunggu..");
 
 	for(x=65;x<=67;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.5);
 	}
 	
 	for(x=68;x<=75;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.1);
 	}
 	
 	for(x=76;x<=86;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.02);
 	}
 	
 	for(x=87;x<=97;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.1);
 	}
 	
