@@ -15,24 +15,38 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 
 /*VARIABEL GLOBAL*/
 int Generate=1; //variabel global untuk menentukan kecerdasan komputer dan papan yang akan dipanggil
-int game = 1; //variabel global untuk menentukan permainan sedang berada di ronde ke berapa / untuk membuat permainan berulang selama 10 kali
+int game; //variabel global untuk menentukan permainan sedang berada di ronde ke berapa / untuk membuat permainan berulang selama 10 kali
+int menang = 0 , seri = 0, kalah = 0; //variabel global untuk menentukan status kemenangan pemain tiap putaran permainan
+
+struct SaveScore{
+		char NamaPemain[50];
+		int skor;
+	}data; 
 
 
 /*INISIALISASI MODUL*/
+
+void board3(int board[10]);
+void board5(int board[26]);
+void DisplayPemain3(int board[10]);
+void DisplayPemain5(int board[26]);
+void GetLevel();
 void gotoxy(int x, int y);
+void HitungSkor();
 void MenuUtama();
 void PilihPapan();
-void DisplayPemain3(int board[10]);
-void board3(int board[10]);
-void board5();
-
+void PilihLevel();
+void SimpanSkor(int skor);
+void show();
+/*===========================================================================================================================================
+===========================================================================================================================================*/
 
 void fullscreen(){
 //author	: internet
 
 //Modul untuk membuat console windows menjadi layar penuh
-//I.S	: 
-//F.S	:
+//I.S	: Console windows ditampilkan tidak dalam ukuran layar penuh
+//F.S	: Console windows ditampilkan dalam ukuran layar penuh
 
 	keybd_event(VK_MENU,0x38,0,0);
 	keybd_event(VK_RETURN,0x1c,0,0);
@@ -112,10 +126,6 @@ void Judul(){
 	gotoxy(70,15);printf("CIRCLE CROSS CHALLENGES\n\n");
 	/*END TAMPILAN CIRCLE CROSS CHALLANGE*/
 	
-	/*GARIS PEMBATAS*/
-	gotoxy(55,17);printf("______________________________________________________");
-	/*END GARIS PEMBATAS*/
-	
 /*END PROCEDURE_JUDUL*/
 }
 
@@ -128,12 +138,21 @@ void PilihLevel(){
 //F.S	: Ditampilkan tampilan menu yang menampilkan level yang tersedia
 
 	int pilihlevel; //variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
+		
+	system("CLS");
+	
+	gotoxy(70,18);printf("PILIH LEVEL");
 	gotoxy(70,20);printf("[1] MUDAH\n");
 	gotoxy(70,21);printf("[2] MENENGAH\n");
 	gotoxy(70,22);printf("[3] SULIT\n");
-	gotoxy(70,23);printf("[0] Kembali Ke Menu Utama\n");
+	gotoxy(70,23);printf("[0] Menu Utama\n");
 	gotoxy(70,25);printf("Masukkan Pilihan :\n");
 	gotoxy(90,25);scanf("%d",&pilihlevel);
+	menang = 0;
+	seri = 0;
+	kalah = 0;
+	Generate = 1;
+	
 	
 	switch(pilihlevel){
 		case 1:
@@ -158,6 +177,10 @@ void PilihLevel(){
 			system("CLS");
 			MenuUtama();
 			break;
+		
+		default: 
+			PilihLevel();
+		break;
 	}
 }
 
@@ -170,8 +193,10 @@ void PilihPapan(){
 //F.S	: Ditampilkan tampilan pilihan papan yang tersedia yaitu papan 3x3 dan papan 5x5, serta pilihan kembali ke menu sebelumnya dan menu utama
 
 	int pilihpapan; //pilihpapan adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
-	
-	gotoxy(73,18);printf("PILIH PAPAN");
+
+	system("CLS");
+		
+	gotoxy(70,18);printf("PILIH PAPAN");
 	gotoxy(70,20);printf("[1] PAPAN 3x3\n");
 	gotoxy(70,21);printf("[2] PAPAN 5x5\n");
 	gotoxy(70,22);printf("[9] Kembali\n");
@@ -179,29 +204,33 @@ void PilihPapan(){
 	gotoxy(70,25);printf("Masukkan Pilihan :\n");
 	gotoxy(90,25);scanf("%d",&pilihpapan);
 	
-		switch(pilihpapan){
-			case 1:
-				system("CLS");
-				Generate=Generate*3;
-				GuntingKertasBatu();
-				break;
+	switch(pilihpapan){
+		case 1:
+			system("CLS");
+			Generate=Generate*3;
+			GuntingKertasBatu();
+			break;
+		
+		case 2:
+			system("CLS");
+			Generate=Generate*5;
+			GuntingKertasBatu();
+			break;
+		
+		case 9:
+			system("CLS");
+			PilihLevel();
+			break;
 			
-			case 2:
-				system("CLS");
-				Generate=Generate*5;
-				GuntingKertasBatu();
-				break;
-			
-			case 9:
-				system("CLS");
-				PilihLevel();
-				break;
-				
-			case 0:
-				system("CLS");
-				MenuUtama();
-				break;
-		}
+		case 0:
+			system("CLS");
+			MenuUtama();
+			break;
+		
+		default: 
+			PilihPapan();
+		break;
+	}
 }
 
 
@@ -209,8 +238,8 @@ int GuntingKertasBatu(){
 //author	: http://deriyuliansyah.blogspot.com/2014/04/game-gunting-batu-dan-kertas-bahasa-c.html
 
 //Modul untuk menampilkan permainan gunting kertas batumemain
-//	: 
-//	: 
+//		: 
+//		: 
 
     srand(time(NULL)); //berguna untuk mengacak angka
     int pemain; //merupakan inisialisasi dari pilihan tangan player
@@ -218,352 +247,93 @@ int GuntingKertasBatu(){
     int menang=0; //merupakan inisialisasi dari banyak kemenangan, jumlahnya dimulai dari 0
     int seri=0; //merupakan inisialisasi dari banyak imbang, jumlahnya dimulai dari 0
     int kalah=0; //merupakan inisialisasi dari banyak kekalahan, jumlahnya dimulai dari 0
+    int GiliranMain;
     char jawaban;
-    system("cls"); //berfungsi untuk clear screen atau membersihkan layar(mengosongkan layar)
+    system("CLS"); //berfungsi untuk clear screen atau membersihkan layar(mengosongkan layar)
 
         musuh = rand()%3; //inisialisasi dari pilihan musuh yang acak dari 0 hingga 2
-        gotoxy(70,15);printf("Pilihlah Tanganmu : \n");
-        gotoxy(70,16);printf("1. Gunting\n");
-        gotoxy(70,17);printf("2. Batu\n");
-        gotoxy(70,18);printf("3. Kertas\n");
-        gotoxy(70,20);printf("Masukkan Pilihan : ");
-        gotoxy(90,20);scanf("%d",&pemain); //menginput pilihan tangan user/player
+        gotoxy(70,18);printf("PILIHLAH TANGANMU : \n");
+        gotoxy(70,20);printf("[1] Gunting\n");
+        gotoxy(70,21);printf("[2] Batu\n");
+        gotoxy(70,22);printf("[3] Kertas\n");
+        gotoxy(70,23);printf("Masukkan Pilihan : ");
+        gotoxy(90,23);scanf("%d",&pemain); //menginput pilihan tangan user/player
         
 		if(pemain>0 && pemain<4){
 			if(musuh==0) //jika hasil acak = 0 berinisialiasi bahwa pilihan musuh adalah gunting
 	        {
 	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
 	            {
-	                gotoxy(65,22);printf("Gunting Lawan Gunting = Kau Seri \n\n");
-	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Gunting Lawan Gunting (Seri)\n\n");
+	                gotoxy(70,29);system("pause");
 	                GuntingKertasBatu();
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
-	                gotoxy(65,22);printf("Gunting Lawan Batu = Kau Menang \n\n");
-	                gotoxy(70,23);printf("Urutan Main = Pertama");
-	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Gunting Lawan Batu (Menang)\n\n");
+	                gotoxy(70,27);printf("Kamu Main Pertama\n");
+	                gotoxy(70,29);system("pause");
 	                
-					switch(Generate){
-						case 3: 
-							do{
-								Mudah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-						
-						case 5:
-							do{
-								Mudah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 6:
-							do{
-								Menengah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 9:
-							do{
-								Sulit3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 15:
-							do{
-								Sulit5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-					}
+	                GetLevel(1);
+					
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
-	                gotoxy(65,22);printf("Gunting Lawan Kertas = Kau Kalah \n\n");
-	                gotoxy(70,23);printf("Urutan Main = Kedua\n");
-	                
-	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
-	                gotoxy(65,25);;system("pause");
+	                gotoxy(70,25);printf("Gunting Lawan Kertas (Kalah)\n\n");
+	                gotoxy(70,27);printf("Kamu Main Kedua\n");	                
+	                gotoxy(70,29);system("pause");
 					
-					switch(Generate){
-						case 3: 
-							do{
-								Mudah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 5:
-							do{
-								Mudah5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 6:
-							do{
-								Menengah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 9:
-							do{
-								Sulit3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-						
-						case 15:
-							do{
-							Sulit5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-					}
+					GetLevel(2);
 	            }
 	        }
 	        else if(musuh==1)
 	        {
 	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
 	            {
-	                gotoxy(65,22);printf("Batu Lawan Gunting = Kau Kalah \n\n");
-	                gotoxy(70,23);printf("Urutan Main = Kedua\n");
-	                	                
-	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	               	gotoxy(70,25);printf("Batu Lawan Gunting (Kalah)\n\n");
+	                gotoxy(70,27);printf("Kamu Main Kedua\n");
+	                gotoxy(70,29);system("pause");
 	               
-				   	switch(Generate){
-						case 3: 
-							do{
-								Mudah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-						
-						case 5:
-							do{
-								Mudah5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-						
-						case 6:
-							do{
-								Menengah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-								
-						case 9:
-							do{
-								Sulit3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 15:
-							do{
-								Sulit5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-					}	                
+					GetLevel(2);	                
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
-	                gotoxy(65,22);printf("Batu Lawan Batu = Kau Seri \n\n");
-	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Batu Lawan Batu (Seri)\n\n");
+	                gotoxy(70,29);system("pause");
 	                GuntingKertasBatu();
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
-	                gotoxy(65,22);printf("Batu Lawan Kertas = Kau Menang \n\n");
-					gotoxy(70,23);printf("Urutan Main = Pertama\n");
-	                menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
-					switch(Generate){
-						case 3: 
-							do{
-								Mudah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-						
-						case 5:
-							do{
-								Mudah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 6:
-							do{
-								Menengah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 9:
-							do{
-								Sulit3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 15:
-							do{
-								Sulit5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-					}
+	                gotoxy(70,25);printf("Batu Lawan Kertas (Menang)\n\n");
+					gotoxy(70,27);printf("Kamu Main Pertama\n");
+	                gotoxy(70,29);system("pause");
+					
+					GetLevel(1);
 	            }
 	        }
 	        if(musuh==2)
 	        {
 	            if(pemain==1) //jika pemain menginput 1 maka inisialiasinya pemain gunting
 	            {
-	                gotoxy(65,22);printf("Kertas Lawan Gunting = Kau Menang \n\n");
-	                gotoxy(70,23);printf("Urutan Main = Pertama\n");
-					menang++; //jika hasilnya seri maka variabel menang akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Kertas Lawan Gunting (Menang)\n\n");
+	                gotoxy(70,27);printf("Kamu Main Pertama\n");
+	                gotoxy(70,29);system("pause");
 	                
-	                switch(Generate){
-						case 3: 
-							do{
-								Mudah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 5:
-							do{
-								Mudah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 6:
-							do{
-								Menengah3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 9:
-							do{
-								Sulit3(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 15:
-							do{
-								Sulit5(1);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-					}
+	                GetLevel(1);
 	            }
 	            else if(pemain==2) //jika pemain menginput 1 maka inisialiasinya pemain batu
 	            {
-	                gotoxy(65,22);printf("Kertas Lawan Batu = Kau Kalah \n\n");
-	                gotoxy(70,23);printf("Urutan Main = Kedua\n");
-	                kalah++; //jika hasilnya seri maka variabel kalah akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Kertas Lawan Batu (Kalah)\n\n");
+	                gotoxy(70,27);printf("Kamu Main Kedua\n");
+	                gotoxy(70,29);system("pause");
 	                
-            		switch(Generate){
-						case 3: 
-							do{
-								Mudah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 5:
-							do{
-								Mudah5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);
-							
-						case 6:
-							do{
-								Menengah3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 10:
-							do{
-								Menengah5(2);	
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-								
-						case 9:
-							do{
-								Sulit3(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-							
-						case 15:
-							do{	
-								Sulit5(2);
-								gotoxy(45,29);system("pause");
-								game++;
-							}while (game < 11);	
-					}
+            		GetLevel(2);
+		
 	            }
 	            else if(pemain==3) //jika pemain menginput 1 maka inisialiasinya pemain kertas
 	            {
-	                gotoxy(65,22);printf("Kertas Lawan Kertas = Kau Seri \n\n");
-	                seri++; //jika hasilnya seri maka variabel seri akan bertambah sebanyak 1
-	                gotoxy(65,25);system("pause");
+	                gotoxy(70,25);printf("Kertas Lawan Kertas (Seri)\n\n");
+	                gotoxy(70,29);system("pause");
 	                GuntingKertasBatu();
 	            }
 	        }
@@ -574,12 +344,69 @@ int GuntingKertasBatu(){
 		}
 }
 
+void GetLevel(int GiliranMain){
+//author	: Hanifah Ghina Nabila
+
+//GiliranMain	: parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain	: berfungsi untuk menjadi parameter untuk modul setiap level di bawah ini.
+
+	switch(Generate){
+		case 3: 
+			game = 1;
+			do{
+				Mudah3(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);
+		
+		case 5:
+			game = 1;
+			do{
+				Mudah5(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);
+			
+		case 6:
+			game = 1;
+			do{
+				Menengah3(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);	
+			
+		case 10:
+			game = 1;
+			do{
+				Menengah5(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);
+			
+		case 9:
+			game = 1;
+			do{
+				Sulit3(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);	
+			
+		case 15:
+			game = 1;
+			do{
+				Sulit5(GiliranMain);
+				gotoxy(45,29);system("pause");
+				game++;
+			}while (game < 11);
+	}
+}
+
 
 int CekMenang(const int board[10]){
-//author	:
+//author	: Matthew Steel
 
-//
-//
+//const int board[10] 	: parameter input bertipe const int dengan passing parameter passing by value
+//parameter input memiliki fungsi memberi informasi isi array board[10] dalam modul setiap level (mudah, menengah, sulit)
 	
 	/*Deklarasi*/
 	unsigned wins[8][3]={{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
@@ -599,8 +426,8 @@ int CekMenang(const int board[10]){
 int CekMenang5(const int board[26]){
 //author	: Hanifah Ghina Nabila
 
-//
-//
+//const int board[26] 	: parameter input bertipe const int dengan passing parameter passing by value
+//parameter input memiliki fungsi memberi informasi isi array board[26] dalam modul setiap level (mudah, menengah, sulit)
 	
 	/*Deklarasi*/
 //	unsigned wins[28][4]={{1,2,3,4},{2,3,4,5},{6,7,8,9},{7,8,9,10},{11,12,13,14},{12,13,14,15},{16,17,18,19},{17,18,19,20},{21,22,23,24},
@@ -626,9 +453,12 @@ int CekMenang5(const int board[26]){
 int minimax(int board[10], int player) {
 //author	: Github: Matthew Steel, 2009
 
-// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputermenentukan pergerakan komputer dengan menelurusipergerakan komputer
+// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputer menentukan pergerakan komputer dengan menelurusipergerakan komputer
 //board[10]	: parameter input bertipe integer dengan passing parameter passing by value
-//player	: parameter input bertipe integer dengan passing parameter passing by valuepassing 
+//board[10]	: berfungsi untuk memberi informasi isi dari array board
+//player	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: berfungsi untuk menerima angka -1 (angka player dalam board[10])
+
 
     //How is the position like for player (their turn) on board?
     int winner = CekMenang(board);
@@ -658,7 +488,9 @@ int minimax5(int board[26], int player) {
 
 // Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputermenentukan pergerakan komputer dengan menelurusipergerakan komputer
 //board[10]	: parameter input bertipe integer dengan passing parameter passing by value
-//player	: parameter input bertipe integer dengan passing parameter passing by valuepassing 
+//board[10]	: berfungsi untuk memberi informasi isi dari array board
+//player	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: berfungsi untuk menerima angka -1 (angka player dalam board[10])
 
     //How is the position like for player (their turn) on board?
     int winner = CekMenang5(board);
@@ -685,9 +517,10 @@ int minimax5(int board[26], int player) {
 
 void LangkahKomputerMudah3(int board[10]) {
 //	author	: Irsyad Muhammad
-	
-// board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
     
 	/*Deklarasi*/
 	int i;
@@ -709,8 +542,10 @@ void LangkahKomputerMudah3(int board[10]) {
 void LangkahKomputerMudah5(int board[26]){
 //	author	: Hanifah Ghina Nabila
 	
-// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 5x5
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah5
+    
     
 	/*Deklarasi*/
 	int i;
@@ -732,8 +567,10 @@ void LangkahKomputerMudah5(int board[26]){
 void LangkahKomputerSulit3(int board[10]){
 //	author	: Github Matthew Steel
 	
-// board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level sulit papan 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Sulit3
+    
     
 	/*Deklarasi*/
 	int move = -1;
@@ -761,8 +598,10 @@ void LangkahKomputerSulit3(int board[10]){
 void LangkahKomputerSulit5(int board[26]) {
 //	author	: Irsyad Muhammad
 	
-// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level sulit papan 3x3
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Sulit5
+    
     
 	/*Deklarasi*/
 	int move = -1;
@@ -799,8 +638,18 @@ void DisplayPemain3(int board[10]){
 	/*Deklarasi*/
 	int y; //variabel untuk menentukan koordinat y
 	
-	/*TAMPILAN SAAT PERMAINANA MULAI*/
+	/*Process*/
+	switch(CekMenang(board)){
+		case -1:
+			++menang;
+			break;
+
+		case 1:
+			++kalah;
+			break;
+	}
 	
+	/*TAMPILAN SAAT PERMAINAN MULAI*/
 	board3(board);
 	gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
 	gotoxy(39,3);printf("บ");
@@ -808,6 +657,10 @@ void DisplayPemain3(int board[10]){
 	gotoxy(15,4);printf("ศอออออออออออออออออออออออผ");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
+	gotoxy(143,25);printf("Status");
+	gotoxy(135,27);printf("Menang	: %d", menang);
+	gotoxy(135,29);printf("Seri	: %d", seri);
+	gotoxy(135,31);printf("Kalah	: %d", kalah);
 	
 	
 	for(y = 0; y < 48; y++){
@@ -828,8 +681,20 @@ void DisplayPemain5(int board[26]){
 	/*Deklarasi*/
 	int y; //variabel untuk menentukan koordinat y
 	
-	/*TAMPILAN SAAT PERMAINANA MULAI*/
+	/*Process*/
+	switch(CekMenang5(board)){
+		case -1:
+			menang++;
+			break;
+		case 0:
+			seri++;
+			break;
+		case 1:
+			kalah++;
+			break;
+	}
 	
+	/*TAMPILAN SAAT PERMAINANA MULAI*/
 	board5(board);
 	gotoxy(15,2);printf("ษอออออออออออออออออออออออป");
 	gotoxy(39,3);printf("บ");
@@ -846,10 +711,12 @@ void DisplayPemain5(int board[26]){
 
 
 void LangkahPemain3(int board[10]) {
-// author	:
+// author	: Matthew Steel
 
-// board[10] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+//Modul untuk menerima input langkah pemain pada permainan papa 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+    
 
 	/*Deklarsi*/
 	int move = 0;
@@ -877,10 +744,12 @@ void LangkahPemain3(int board[10]) {
 
 
 void LangkahPemain5(int board[26]) {
-// author	:
+// author	: Hanifah Ghina Nabila
 
-// board[26] adalah parameter input bertipe integer dengan passing parameter passing by value
-//
+//Modul untuk menerima input dari pemain pada permainan papa 5x5
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+    
 
 	/*Deklarsi*/
 	int move = 0;
@@ -908,10 +777,13 @@ void LangkahPemain5(int board[26]) {
 
 
 int Mudah3(int GiliranMain){
-// author	:
+// author	: Irsyad Muhammad
 
-//
-//
+//Modul untuk memulai permaianan dengan level mudah papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
 	
@@ -933,29 +805,37 @@ int Mudah3(int GiliranMain){
 	
 	switch(CekMenang(board)) {
 		case 0:
+			++seri;
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Permainan Imbang!\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Permainan Imbang!\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 		
 		case 1:
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Kamu Kalah :(\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Kamu Kalah :(\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Kamu Menang!!\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Kamu Menang!!\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 	}
@@ -963,10 +843,11 @@ int Mudah3(int GiliranMain){
 
 
 int Mudah5(int GiliranMain){
-// author	:
+// author	: Hanifah Ghina Nabila
 
-//
-//
+//Modul untuk memulai permaianan dengan level mudah papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
 	/*Deklarasi*/
 	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	
@@ -990,27 +871,30 @@ int Mudah5(int GiliranMain){
 		case 0:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
 			}
 			break;
 		
 		case 1:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Kalah :(\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
 			}
 			break;
 	}
@@ -1018,10 +902,13 @@ int Mudah5(int GiliranMain){
 
 
 int Menengah3(int GiliranMain){
-// author	:
+// author	: Irsyad Muhammad
 
-//
-//
+//Modul untuk memulai permaianan dengan level menengah papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
 	
@@ -1051,29 +938,36 @@ int Menengah3(int GiliranMain){
 	
 	switch(CekMenang(board)) {
 		case 0:
+			++seri;
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Permainan Imbang!\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Permainan Imbang!\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 		
 		case 1:
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Kamu Kalah :(\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Kamu Kalah :(\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Kamu Menang!!\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Kamu Menang!!\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 	}
@@ -1081,15 +975,24 @@ int Menengah3(int GiliranMain){
 
 
 int Menengah5(int GiliranMain){
+//author	:
+
+//Modul untuk memulai permaianan dengan level menengah papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+
 	exit(1);
 }
 
 
 int Sulit3(int GiliranMain){
-// author	:
+// author	: Matthew Steel 
 
-//
-//
+//Modul untuk memulai permaianan dengan level sulit papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
 	
@@ -1114,29 +1017,37 @@ int Sulit3(int GiliranMain){
 	
 	switch(CekMenang(board)) {
 		case 0:
+			++seri;
 			DisplayPemain3(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
-			if (game == 11){
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
+				
 			}
 			break;
 		
 		case 1:
 			DisplayPemain3(board);
-			gotoxy(45,27);printf("Kamu Kalah :(\n");
-			if (game == 11){
+			gotoxy(55,27);printf("Kamu Kalah :(\n");
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain3(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
-			if (game == 11){
+			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 	}
@@ -1156,7 +1067,7 @@ int Sulit5(int GiliranMain){
 	int pilihan;
 	
 	/*Proses*/		
-	for(turn = 0; turn < 25 && CekMenang(board) == 0; ++turn){
+	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
 				
 		if((turn + GiliranMain) % 2 == 0) {
@@ -1171,30 +1082,113 @@ int Sulit5(int GiliranMain){
 		case 0:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 		
 		case 1:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Kalah :(\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
-			if (game == 11){
+			if (game == 10){
 				system("CLS");
 				/*Panggil modul score*/
+				HitungSkor();
+				MenuUtama();
 			}
 			break;
 	}
+}
+
+void HitungSkor(){
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menghitung skor selama permainan
+//I.S	:
+//F.S	:
+
+	int SkorTotal, SkorMenang, SkorSeri;
+	
+	switch(Generate){
+		case 3:
+			SkorMenang = menang*1000;
+			SkorSeri = seri*500;
+			SkorTotal = SkorMenang + SkorSeri;
+			break;
+		case 5:
+		case 6:
+			SkorMenang = menang*3000;
+			SkorSeri = seri*1500;
+			SkorTotal = SkorMenang + SkorSeri;
+			break;
+		case 10:
+		case 9:
+			SkorMenang = menang*7000;
+			SkorSeri = seri*3500;
+			SkorTotal = SkorMenang + SkorSeri;
+			break;
+	}
+	
+	gotoxy(70,22);printf("Skor kamu : %d", SkorTotal);
+
+	SimpanSkor(SkorTotal);
+
+}
+
+void SimpanSkor(int skor){
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menginput nama pemain dan menyimpan nama pemain beserta skor ke dalam file DataSkorCCC.dat
+//int skor	: parameter input bertipe integer dengan passing parameter passing by value
+//int skor 	: berfungsi menginput skorTotal dari modul hitungskor ke dalam struct data 
+	
+	struct data; 
+	FILE *DataSkor;
+	
+	DataSkor = fopen("DataSkorCCC.dat", "rb");
+	data.skor = skor;
+	gotoxy(60,24);printf("Masukkan nama kamu : ");
+	scanf("%s\n", &data.NamaPemain);
+
+	fclose(DataSkor);
+	
+}
+
+
+void show(){
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menampilkan score yang sudah disimpan di dalam file.
+//I.S	: Ditampilkan tampilan MenuUtama
+//F.S	: Ditampilkan tampilan berupa nama dan skor yang dimiliki
+   
+    FILE *tampil;
+    struct data;
+    
+    tampil = fopen("DataSkorCCC.dat", "rb");
+    
+    while (!feof(tampil)) {
+        fscanf(tampil, "%s %d\n", &data.NamaPemain, &data.skor);
+        gotoxy(70,2);printf("Papan Peringkat\n");
+        gotoxy(70,5);printf("%s - %d\n\n", data.NamaPemain, data.skor);
+    }
+    
+	gotoxy(65,25);system("pause");
+    MenuUtama();
 }
 
 
@@ -1203,7 +1197,7 @@ char gridChar(int i){
 
 //Modul untuk menampilkan simbol di dalam papan
 //int i 	: parameter input bertipe integer dengan passing parameter passing by value.
-//
+//int i		: berfungsi untuk mengisi switch 
 	
 	switch(i){
 		case -1:
@@ -1341,9 +1335,7 @@ void AboutUs() {
 void timer(float persentase) {
 //author:
 
-//Modul untuk 
-//I.S	:
-//F.S	:
+//Modul untuk mengatur kecepatan printf() pada modul loading()
 
 	clock_t endwait;
 	endwait=clock()+persentase*CLOCKS_PER_SEC;
@@ -1356,8 +1348,8 @@ void loading() {
 //author	: Irsyad Muhammad
 
 //Modul untuk menampilkan tampilan loading
-//I.S	: Ditampilkan tampilan modul ModulUtama
-//F.s	: Ditampilkan tampilan loading
+//I.S	: Ditampilkan tampilan modul PilihPapan/GuntingKertasBatu
+//F.s	: Ditampilkan tampilan modul GuntingKertasBatu/level yang tersedia(Mudah3,Mudah5,Menengah3,Menengah5,Sulit3, dan Sulit5)
  
  /*BEGIN PROCEDURE LOADING*/
 	int x;
@@ -1370,7 +1362,7 @@ void loading() {
 	
 	for(x=68;x<=75;x++){
 		gotoxy(x,22);printf("Û\n");
-		timer(0.2);
+		timer(0.1);
 	}
 	
 	for(x=76;x<=86;x++){
@@ -1394,7 +1386,10 @@ void MenuUtama() {
 //I.S	: Ditampilkan tampilan layar sebelum modul MenuUtama
 //F.S	: Ditampilkan tampilan menu utama yang menampilkan pilihan untuk bermain, petunjuk permainan, highscore, dan exit
 	
-	int PilihMenu;	//PilihMenu adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu	yang tersedia
+	int pilihmenu;	//PilihMenu adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu	yang tersedia
+	
+	
+	system("CLS");
 	Judul();
 	
 	gotoxy(70,20);printf("[1] PERMAINAN BARU\n");
@@ -1403,11 +1398,10 @@ void MenuUtama() {
 	gotoxy(70,23);printf("[4] CREDITS\n");
 	gotoxy(70,24);printf("[0] KELUAR\n");
 	gotoxy(70,26);printf("Masukkan Pilihan : \n");
-	gotoxy(90,26);scanf("%d",&PilihMenu);
+	gotoxy(90,26);scanf("%d",&pilihmenu);
 
-	switch(PilihMenu){
+	switch(pilihmenu){
 		case 1: 
-			system("CLS");
 			PilihLevel();
 		break;
 		
@@ -1418,7 +1412,7 @@ void MenuUtama() {
 		
 		case 3: 
 			system("CLS");
-		
+			show();
 		break;
 		
 		case 4: 
