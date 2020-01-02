@@ -1124,6 +1124,7 @@ void HitungSkor(){
 			SkorMenang = menang*2000;
 			SkorSeri = seri*1000;
 			SkorTotal = SkorMenang + SkorSeri;
+			break;
 		case 6:
 			SkorMenang = menang*3000;
 			SkorSeri = seri*1500;
