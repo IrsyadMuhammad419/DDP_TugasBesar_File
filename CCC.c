@@ -43,6 +43,7 @@ void Judul();
 void LangkahKomputerMudah3(int board[10]);
 void LangkahKomputerMudah5(int board[26]);
 void LangkahKomputerSulit3(int board[10]);
+void LangkahKomputerSulit5(int board[26]);
 void LangkahPemain3(int board[10]);
 void LangkahPemain5(int board[26]);
 void loading();
@@ -231,12 +232,14 @@ void PilihPapan(){
 		case 1:
 			system("CLS");
 			Generate=Generate*3;
+			loading();
 			GuntingKertasBatu();
 			break;
 		
 		case 2:
 			system("CLS");
 			Generate=Generate*5;
+			loading();
 			GuntingKertasBatu();
 			break;
 		
@@ -374,6 +377,8 @@ void GetLevel(int GiliranMain){
 	switch(Generate){
 		case 3: 
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Mudah3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -382,6 +387,8 @@ void GetLevel(int GiliranMain){
 			break;
 		case 5:
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Mudah5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -390,6 +397,8 @@ void GetLevel(int GiliranMain){
 			break;
 		case 6:
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Menengah3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -398,6 +407,8 @@ void GetLevel(int GiliranMain){
 			break;
 		case 10:
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Menengah5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -406,6 +417,8 @@ void GetLevel(int GiliranMain){
 			break;
 		case 9:
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Sulit3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -414,6 +427,8 @@ void GetLevel(int GiliranMain){
 			break;
 		case 15:
 			game = 1;
+			system("cls");
+			loading();
 			do{
 				Sulit5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -596,6 +611,32 @@ void LangkahKomputerSulit3(int board[10]){
 	board[move] = 1;
 }
 
+
+void LangkahKomputerSulit5(int board[26]){
+//	author	: Hanifah Ghina Nabila
+
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 5x5
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+    
+//I.S	: Papan belum menampilkan input simbol dari komputer (simbol X)
+//F.S 	: Simbol komputer (simbol X) ditampilkan di papan
+
+	/*Deklarasi*/
+	int i;
+	int move;
+
+	/*Proses*/
+	reset:
+	move = 1 + rand()% 25; // 1 adalah range angka terkecil yg akan di random, dan 9 adalah angka terbesar yang akan dirandom
+		
+	if(board[move] != 0){
+		goto reset;
+	}
+	else{
+		board[move] = 1;
+	}
+}
 
 void DisplayPemain3(int board[10]){
 //author	: Irsyad Muhammad
@@ -834,7 +875,6 @@ void Mudah5(int GiliranMain){
 	/*Proses*/		
 	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
-				
 		if((turn + GiliranMain) % 2 == 0) {
 			LangkahKomputerMudah5(board);
 		}
@@ -973,7 +1013,12 @@ void Menengah5(int GiliranMain){
 	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
 		if((turn + GiliranMain) % 2 == 0) {
-			LangkahKomputerMudah5(board);
+			if(turn < 13) {
+				LangkahKomputerSulit5(board);
+			}
+			else{
+				LangkahKomputerMudah5(board);
+			}
 		}
 		else {
 			LangkahPemain5(board);
@@ -1037,7 +1082,6 @@ void Sulit3(int GiliranMain){
 	
 	/*Proses*/
 	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
-
 		
 		if((turn + GiliranMain) % 2 == 0) {
 			LangkahKomputerSulit3(board);
@@ -1107,7 +1151,7 @@ void Sulit5(int GiliranMain){
 	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
 		if((turn + GiliranMain) % 2 == 0) {
-			LangkahKomputerMudah5(board);
+			LangkahKomputerSulit5(board);
 		}
 		else {
 			LangkahPemain5(board);
@@ -1243,7 +1287,7 @@ void SortScore(){
 	fclose(arrange);
 	
 	for(i=0; i<n-1; i++){
-		for(j=0; j<n-1; j++){
+		for(j=0; j<n-i-1; j++){
 			if(leaderboard[j].skor < leaderboard[j+1].skor){
 				temp = leaderboard[j];
 				leaderboard[j] = leaderboard[j+1];
