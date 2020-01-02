@@ -11,7 +11,7 @@ Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 #include<conio.h>
 #include<time.h>
 #include<windows.h>
-
+#include <string.h>
 
 /*VARIABEL GLOBAL*/
 int Generate=1; //variabel global untuk menentukan kecerdasan komputer dan papan yang akan dipanggil
@@ -21,7 +21,7 @@ int menang = 0 , seri = 0, kalah = 0; //variabel global untuk menentukan status 
 struct SaveScore{
 		char NamaPemain[50];
 		int skor;
-	}data; 
+	}; 
 
 
 /*INISIALISASI MODUL*/
@@ -82,44 +82,44 @@ void Judul(){
 	/*TAMPILAN CCC*/
 	
 	/*baris 1*/
-	gotoxy(58,5); printf("€€€€€€€€€€€€\n");
-	gotoxy(76,5); printf("€€€€€€€€€€€€\n");
-	gotoxy(94,5); printf("€€€€€€€€€€€€\n");
+	gotoxy(58,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(76,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(94,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
 	
 	/*baris 2*/
-	gotoxy(58,6); printf("€€€€€€€€€€€€\n");
-	gotoxy(76,6); printf("€€€€€€€€€€€€\n");
-	gotoxy(94,6); printf("€€€€€€€€€€€€\n");
+	gotoxy(58,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(76,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(94,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
 	
 	/*baris 3*/
-	gotoxy(58,7); printf("€€€€€\n");
-	gotoxy(76,7); printf("€€€€€\n");
-	gotoxy(94,7); printf("€€€€€\n");
+	gotoxy(58,7); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(76,7); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(94,7); printf("√õ√õ√õ√õ√õ\n");
 	
 	/*baris 4*/
-	gotoxy(58,8); printf("€€€€€\n");
-	gotoxy(76,8); printf("€€€€€\n");
-	gotoxy(94,8); printf("€€€€€\n");
+	gotoxy(58,8); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(76,8); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(94,8); printf("√õ√õ√õ√õ√õ\n");
 	
 	/*baris 5*/
-	gotoxy(58,9); printf("€€€€€\n");
-	gotoxy(76,9); printf("€€€€€\n");
-	gotoxy(94,9); printf("€€€€€\n");
+	gotoxy(58,9); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(76,9); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(94,9); printf("√õ√õ√õ√õ√õ\n");
 	
 	/*baris 6*/
-	gotoxy(58,10); printf("€€€€€\n");
-	gotoxy(76,10); printf("€€€€€\n");
-	gotoxy(94,10); printf("€€€€€\n");
+	gotoxy(58,10); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(76,10); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(94,10); printf("√õ√õ√õ√õ√õ\n");
 		
 	/*baris 7*/
-	gotoxy(58,11); printf("€€€€€€€€€€€€\n");
-	gotoxy(76,11); printf("€€€€€€€€€€€€\n");
-	gotoxy(94,11); printf("€€€€€€€€€€€€\n");
+	gotoxy(58,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(76,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(94,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
 	
 	/*baris 8*/
-	gotoxy(58,12); printf("€€€€€€€€€€€€\n");
-	gotoxy(76,12); printf("€€€€€€€€€€€€\n");
-	gotoxy(94,12); printf("€€€€€€€€€€€€\n");
+	gotoxy(58,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(76,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(94,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
 	/*END TAMPILAN CCC*/
 	
 	/*TAMPILAN CIRCLE CROSS CHALLANGE*/
@@ -244,9 +244,6 @@ int GuntingKertasBatu(){
     srand(time(NULL)); //berguna untuk mengacak angka
     int pemain; //merupakan inisialisasi dari pilihan tangan player
     int musuh; //merupakan inisialisasi dari pilihan tangan musuh
-    int menang=0; //merupakan inisialisasi dari banyak kemenangan, jumlahnya dimulai dari 0
-    int seri=0; //merupakan inisialisasi dari banyak imbang, jumlahnya dimulai dari 0
-    int kalah=0; //merupakan inisialisasi dari banyak kekalahan, jumlahnya dimulai dari 0
     int GiliranMain;
     char jawaban;
     system("CLS"); //berfungsi untuk clear screen atau membersihkan layar(mengosongkan layar)
@@ -338,7 +335,7 @@ int GuntingKertasBatu(){
 	            }
 	        }
 		}else{
-			gotoxy(65,22);printf("Angka Anda Masukkan Tidak Valid\n");
+			gotoxy(65,24);printf("Angka yang Anda Masukkan Tidak Valid\n");
 			getch();
 			GuntingKertasBatu();
 		}
@@ -358,15 +355,17 @@ void GetLevel(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				game++;
 			}while (game < 11);
-		
+			break;
 		case 5:
+		case 10:
+		case 15:
 			game = 1;
 			do{
 				Mudah5(GiliranMain);
-				gotoxy(45,29);system("pause");
+				gotoxy(45,34);system("pause");
 				game++;
 			}while (game < 11);
-			
+			break;
 		case 6:
 			game = 1;
 			do{
@@ -374,15 +373,7 @@ void GetLevel(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				game++;
 			}while (game < 11);	
-			
-		case 10:
-			game = 1;
-			do{
-				Menengah5(GiliranMain);
-				gotoxy(45,29);system("pause");
-				game++;
-			}while (game < 11);
-			
+			break;
 		case 9:
 			game = 1;
 			do{
@@ -390,14 +381,7 @@ void GetLevel(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				game++;
 			}while (game < 11);	
-			
-		case 15:
-			game = 1;
-			do{
-				Sulit5(GiliranMain);
-				gotoxy(45,29);system("pause");
-				game++;
-			}while (game < 11);
+			break;
 	}
 }
 
@@ -430,9 +414,6 @@ int CekMenang5(const int board[26]){
 //parameter input memiliki fungsi memberi informasi isi array board[26] dalam modul setiap level (mudah, menengah, sulit)
 	
 	/*Deklarasi*/
-//	unsigned wins[28][4]={{1,2,3,4},{2,3,4,5},{6,7,8,9},{7,8,9,10},{11,12,13,14},{12,13,14,15},{16,17,18,19},{17,18,19,20},{21,22,23,24},
-//	{22,23,24,25},{1,6,11,16},{6,11,16,21},{2,7,12,17},{7,12,17,22},{3,8,13,18},{8,13,18,23},{4,9,14,19},{9,14,19,24},
-//	{5,10,15,20},{10,15,20,25},{6,12,18,24},{1,7,13,19},{7,13,19,25},{2,8,14,20},{4,8,12,16},{5,9,13,17},{9,13,17,21},{10,14,18,22}};
 	unsigned wins[12][5] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25},{1,6,11,16,21},{2,7,12,17,22},
 	{3,8,13,18,23},{4,9,14,19,24},{5,10,15,20,25},{1,7,13,19,25},{5,9,13,17,21}};
 	int i;
@@ -651,10 +632,10 @@ void DisplayPemain3(int board[10]){
 	
 	/*TAMPILAN SAAT PERMAINAN MULAI*/
 	board3(board);
-	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
-	gotoxy(39,3);printf("∫");
-	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
+	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
+	gotoxy(39,3);printf("¬∫");
+	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
 	gotoxy(143,25);printf("Status");
@@ -664,7 +645,7 @@ void DisplayPemain3(int board[10]){
 	
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("∫");
+		gotoxy(125,y);printf("¬∫");
 	}
 }
 
@@ -684,28 +665,29 @@ void DisplayPemain5(int board[26]){
 	/*Process*/
 	switch(CekMenang5(board)){
 		case -1:
-			menang++;
-			break;
-		case 0:
-			seri++;
+			++menang;
 			break;
 		case 1:
-			kalah++;
+			++kalah;
 			break;
 	}
 	
 	/*TAMPILAN SAAT PERMAINANA MULAI*/
 	board5(board);
-	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
-	gotoxy(39,3);printf("∫");
-	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
+	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
+	gotoxy(39,3);printf("¬∫");
+	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
+	gotoxy(143,31);printf("Status");
+	gotoxy(135,33);printf("Menang	: %d", menang);
+	gotoxy(135,35);printf("Seri	: %d", seri);
+	gotoxy(135,37);printf("Kalah	: %d", kalah);
 	
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("∫");
+		gotoxy(125,y);printf("¬∫");
 	}
 }
 
@@ -761,12 +743,12 @@ void LangkahPemain5(int board[26]) {
 		
 			DisplayPemain5(board);
 		
-			gotoxy(45,28);printf("Masukkan Pilihan :");
-			gotoxy(65,28);scanf("%d", &move);
+			gotoxy(45,33);printf("Masukkan Pilihan :");
+			gotoxy(65,33);scanf("%d", &move);
 			
 			if (board[move] != 0){
-				gotoxy(45, 32);printf("Langkah Tidak Valid!\n");
-				gotoxy(65, 32);getch();
+				gotoxy(45, 37);printf("Langkah Tidak Valid!\n");
+				gotoxy(65, 37);getch();
 				goto begin;
 				printf("\n");
 			}
@@ -869,32 +851,36 @@ int Mudah5(int GiliranMain){
 	
 	switch(CekMenang5(board)) {
 		case 0:
+			++seri;
 			DisplayPemain5(board);
-			gotoxy(45,27);printf("Permainan Imbang!\n");
+			gotoxy(55,32);printf("Permainan Imbang!\n");
 			if (game == 10){
+				gotoxy(45,34);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
+//				MenuUtama();
 			}
 			break;
 		
 		case 1:
 			DisplayPemain5(board);
-			gotoxy(45,27);printf("Kamu Kalah :(\n");
+			gotoxy(55,32);printf("Kamu Kalah :(\n");
 			if (game == 10){
+				gotoxy(45,34);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
+//				MenuUtama();
 			}
 			break;
 			
 		case -1:
 			DisplayPemain5(board);
-			gotoxy(45,27);printf("Kamu Menang!!\n");
+			gotoxy(55,32);printf("Kamu Menang!!\n");
 			if (game == 10){
+				gotoxy(45,34);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
+//				MenuUtama();
 			}
 			break;
 	}
@@ -945,7 +931,7 @@ int Menengah3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 			}
 			break;
 		
@@ -956,7 +942,7 @@ int Menengah3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 			}
 			break;
 			
@@ -967,7 +953,7 @@ int Menengah3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 			}
 			break;
 	}
@@ -1024,7 +1010,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 				
 			}
 			break;
@@ -1036,7 +1022,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 			}
 			break;
 			
@@ -1047,7 +1033,7 @@ int Sulit3(int GiliranMain){
 				gotoxy(45,29);system("pause");
 				system("CLS");
 				HitungSkor();
-				MenuUtama();
+//				MenuUtama();
 			}
 			break;
 	}
@@ -1083,8 +1069,8 @@ int Sulit5(int GiliranMain){
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Permainan Imbang!\n");
 			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
 				MenuUtama();
 			}
@@ -1094,8 +1080,8 @@ int Sulit5(int GiliranMain){
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Kalah :(\n");
 			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
 				MenuUtama();
 			}
@@ -1105,8 +1091,8 @@ int Sulit5(int GiliranMain){
 			DisplayPemain5(board);
 			gotoxy(45,27);printf("Kamu Menang!!\n");
 			if (game == 10){
+				gotoxy(45,29);system("pause");
 				system("CLS");
-				/*Panggil modul score*/
 				HitungSkor();
 				MenuUtama();
 			}
@@ -1130,12 +1116,16 @@ void HitungSkor(){
 			SkorTotal = SkorMenang + SkorSeri;
 			break;
 		case 5:
+		case 10:
+		case 15:
+			SkorMenang = menang*2000;
+			SkorSeri = seri*1000;
+			SkorTotal = SkorMenang + SkorSeri;
 		case 6:
 			SkorMenang = menang*3000;
 			SkorSeri = seri*1500;
 			SkorTotal = SkorMenang + SkorSeri;
 			break;
-		case 10:
 		case 9:
 			SkorMenang = menang*7000;
 			SkorSeri = seri*3500;
@@ -1143,8 +1133,6 @@ void HitungSkor(){
 			break;
 	}
 	
-	gotoxy(70,22);printf("Skor kamu : %d", SkorTotal);
-
 	SimpanSkor(SkorTotal);
 
 }
@@ -1156,16 +1144,68 @@ void SimpanSkor(int skor){
 //int skor	: parameter input bertipe integer dengan passing parameter passing by value
 //int skor 	: berfungsi menginput skorTotal dari modul hitungskor ke dalam struct data 
 	
-	struct data; 
+	struct SaveScore data; 
 	FILE *DataSkor;
+	int pilihan;
 	
-	DataSkor = fopen("DataSkorCCC.dat", "rb");
+	DataSkor = fopen("DataSkorCCC.txt", "ab");
+	gotoxy(70,22);printf("Skor kamu : %d", skor);
 	data.skor = skor;
-	gotoxy(60,24);printf("Masukkan nama kamu : ");
-	scanf("%s\n", &data.NamaPemain);
-
+	gotoxy(65,24);printf("Masukkan nama kamu : ");
+	gotoxy(86,24);scanf("%s\n", &data.NamaPemain);
+	
+	fprintf(DataSkor, "%s - %d\n", data.NamaPemain, data.skor);
 	fclose(DataSkor);
 	
+	SortScore();
+//	gotoxy(65,27);printf("Apakah kamu ingin bermain lagi?\n");
+//	gotoxy(70,28);printf("[1] YA\n");
+//	gotoxy(70,29);printf("[2] TIDAK");
+//	gotoxy(65,30);printf("Masukkan pilihanmu : ");
+//	gotoxy(86,30);scanf("%d", pilihan);
+//	if(pilihan==1){
+//		MenuUtama();
+//	}else{
+//		exit(1);
+//	}
+	
+}
+
+void SortScore(){
+// Author : Hanifah Ghina Nabila
+
+//I.S : Skor pada file belum terurut
+//F.S : Skor pada file sudah terurut
+
+	FILE *arrange;
+	struct SaveScore leaderboard[100];
+	struct SaveScore temp;
+	int n, i, j;
+	
+	arrange = fopen("DataSkorCCC.txt", "rb");
+	n = 0;
+	while(!feof(arrange)){
+		fscanf(arrange, "%s - %d\n", &leaderboard[n].NamaPemain, &leaderboard[n].skor);
+		n++;
+	}
+	fclose(arrange);
+	
+	for(i=0; i<n-1; i++){
+		for(j=0; j<n-1; j++){
+			if(strcmp(leaderboard[j].skor, leaderboard[j+1].skor) > 0){
+				temp = leaderboard[j];
+				leaderboard[j] = leaderboard[j+1];
+				leaderboard[j+1] = temp;
+			}
+		}
+	}
+	
+	arrange = fopen("DataSkorCCC.txt", "wb");
+	
+	for(i=0; i<n; i++){
+		fprintf(arrange, "%s - %d\n", leaderboard[i].NamaPemain, leaderboard[i].skor);
+		};
+	fclose(arrange);
 }
 
 
@@ -1177,15 +1217,17 @@ void show(){
 //F.S	: Ditampilkan tampilan berupa nama dan skor yang dimiliki
    
     FILE *tampil;
-    struct data;
+    struct SaveScore data;
+    int y = 5;
     
-    tampil = fopen("DataSkorCCC.dat", "rb");
+    tampil = fopen("DataSkorCCC.txt", "rb");
     
     while (!feof(tampil)) {
-        fscanf(tampil, "%s %d\n", &data.NamaPemain, &data.skor);
+        fscanf(tampil, "%s - %d\n", &data.NamaPemain, &data.skor);
         gotoxy(70,2);printf("Papan Peringkat\n");
-        gotoxy(70,5);printf("%s - %d\n\n", data.NamaPemain, data.skor);
-    }
+        gotoxy(70,y);printf("%s - %d\n\n", data.NamaPemain, data.skor);
+    	y++;
+	}
     
 	gotoxy(65,25);system("pause");
     MenuUtama();
@@ -1235,15 +1277,15 @@ void board3(int b[10]) {
 	
 		
 	/*TAMPILAN PAPAN MAP*/
-	gotoxy(143,11);printf("|     |\n");
-	gotoxy(138,12);printf("  1  |  2  |  3\n");
-	gotoxy(138,13);printf("_____|_____|_____\n");
-	gotoxy(143,14);printf("|     |\n");
-	gotoxy(138,15);printf("  4  |  5  |  6\n");	
-	gotoxy(138,16);printf("_____|_____|_____\n");
-	gotoxy(143,17);printf("|     |\n");
-	gotoxy(138,18);printf("  7  |  8  |  9\n");
-	gotoxy(138,19);printf("     |     |\n");
+	gotoxy(143,12);printf("|     |\n");
+	gotoxy(138,13);printf("  1  |  2  |  3\n");
+	gotoxy(138,14);printf("_____|_____|_____\n");
+	gotoxy(143,15);printf("|     |\n");
+	gotoxy(138,16);printf("  4  |  5  |  6\n");	
+	gotoxy(138,17);printf("_____|_____|_____\n");
+	gotoxy(143,18);printf("|     |\n");
+	gotoxy(138,19);printf("  7  |  8  |  9\n");
+	gotoxy(138,20);printf("     |     |\n");
 	/*END TAMPILAN PAPAN MAP*/
 }
 
@@ -1256,23 +1298,41 @@ void board5(int b[26]) {
 //F.S	: Ditampilkan papan dengan grid 5x5
 	
 	system("CLS");
-	/*TAMPILAN PAPAN*/
-	gotoxy(60,10);printf("|     |     |     |\n");
-	gotoxy(55,11);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]), gridChar(b[4]), gridChar(b[5])); //tempat penyimpanan bidak 1-5
-	gotoxy(55,12);printf("_____|_____|_____|_____|_____\n");
-	gotoxy(60,13);printf("|     |     |     |\n");
-	gotoxy(55,14);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[6]), gridChar(b[7]), gridChar(b[8]), gridChar(b[9]), gridChar(b[10]));//tempat penyimpanan bidak 6-10
-	gotoxy(55,15);printf("_____|_____|_____|_____|_____\n");
-	gotoxy(60,16);printf("|     |     |     |\n");
-	gotoxy(55,17);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[11]), gridChar(b[12]), gridChar(b[13]), gridChar(b[14]), gridChar(b[15])); //tempat penyimpanan bidak 11-15
-	gotoxy(55,18);printf("_____|_____|_____|_____|_____\n");
-	gotoxy(60,19);printf("|     |     |     |\n");
-	gotoxy(55,20);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[16]), gridChar(b[17]), gridChar(b[18]), gridChar(b[19]), gridChar(b[20])); //tempat penyimpanan bidak 16-20
-	gotoxy(55,21);printf("_____|_____|_____|_____|_____\n");
-	gotoxy(60,22);printf("|     |     |     |\n");
-	gotoxy(55,23);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[21]), gridChar(b[22]), gridChar(b[23]), gridChar(b[24]), gridChar(b[25])); //tempat penyimpanan bidak 21-25
-	gotoxy(60,24);printf("|     |     |     |\n");
-	/*END TAMPILAN PAPAN*/
+	/*TAMPILAN PAPAN*//*TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
+	gotoxy(50,15);printf("|     |     |     |\n");
+	gotoxy(45,16);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[1]), gridChar(b[2]), gridChar(b[3]), gridChar(b[4]), gridChar(b[5])); //tempat penyimpanan bidak 1-5
+	gotoxy(45,17);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(50,18);printf("|     |     |     |\n");
+	gotoxy(45,19);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[6]), gridChar(b[7]), gridChar(b[8]), gridChar(b[9]), gridChar(b[10]));//tempat penyimpanan bidak 6-10
+	gotoxy(45,20);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(50,21);printf("|     |     |     |\n");
+	gotoxy(45,22);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[11]), gridChar(b[12]), gridChar(b[13]), gridChar(b[14]), gridChar(b[15])); //tempat penyimpanan bidak 11-15
+	gotoxy(45,23);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(50,24);printf("|     |     |     |\n");
+	gotoxy(45,25);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[16]), gridChar(b[17]), gridChar(b[18]), gridChar(b[19]), gridChar(b[20])); //tempat penyimpanan bidak 16-20
+	gotoxy(45,26);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(50,27);printf("|     |     |     |\n");
+	gotoxy(45,28);printf("  %c  |  %c  |  %c  |  %c  |  %c  \n", gridChar(b[21]), gridChar(b[22]), gridChar(b[23]), gridChar(b[24]), gridChar(b[25])); //tempat penyimpanan bidak 21-25
+	gotoxy(50,29);printf("|     |     |     |\n");
+	/*END TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
+	
+	/*TAMPILAN PAPAN MAP*/
+	gotoxy(137,12);printf("|     |     |     |\n");
+	gotoxy(132,13);printf("  1  |  2  |  3  |  4  |  5  \n"); //tempat penyimpanan bidak 1-5
+	gotoxy(132,14);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(137,15);printf("|     |     |     |\n");
+	gotoxy(132,16);printf("  6  |  7  |  8  |  9  |  10  \n");//tempat penyimpanan bidak 6-10
+	gotoxy(132,17);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(137,18);printf("|     |     |     |\n");
+	gotoxy(132,19);printf("  11 |  12 |  13 |  14 |  15 \n"); //tempat penyimpanan bidak 11-15
+	gotoxy(132,20);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(137,21);printf("|     |     |     |\n");
+	gotoxy(132,22);printf("  16 |  17 |  18 |  19 |  20 \n"); //tempat penyimpanan bidak 16-20
+	gotoxy(132,23);printf("_____|_____|_____|_____|_____\n");
+	gotoxy(137,24);printf("|     |     |     |\n");
+	gotoxy(132,25);printf("  21 |  22 |  23 |  24 |  25 \n"); //tempat penyimpanan bidak 21-25
+	gotoxy(137,26);printf("|     |     |     |\n");	
+	/*END TAMPILAN PAPAN MAP*/
 }
 
 
@@ -1356,22 +1416,22 @@ void loading() {
 	gotoxy(75,20); printf("Harap Tunggu..");
 
 	for(x=65;x<=67;x++){
-		gotoxy(x,22);printf("€\n");
+		gotoxy(x,22);printf("√õ\n");
 		timer(0.5);
 	}
 	
 	for(x=68;x<=75;x++){
-		gotoxy(x,22);printf("€\n");
+		gotoxy(x,22);printf("√õ\n");
 		timer(0.1);
 	}
 	
 	for(x=76;x<=86;x++){
-		gotoxy(x,22);printf("€\n");
+		gotoxy(x,22);printf("√õ\n");
 		timer(0.02);
 	}
 	
 	for(x=87;x<=97;x++){
-		gotoxy(x,22);printf("€\n");
+		gotoxy(x,22);printf("√õ\n");
 		timer(0.1);
 	}
 	
