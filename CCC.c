@@ -1253,7 +1253,6 @@ void SimpanSkor(int skor){
 
 	struct SaveScore data; 
 	FILE *DataSkor;
-	int pilihan;
 	
 	DataSkor = fopen("DataSkorCCC.txt", "ab");
 	gotoxy(70,22);printf("Skor kamu : %d", skor);
