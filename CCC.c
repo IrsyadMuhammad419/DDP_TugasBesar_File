@@ -6,9 +6,9 @@ Author 			: 	Hanifah Ghina Nabila (191524010)
 Versi/tanggal	: 	1.1 / 21/12/2019 
 Compiler 		:	TDM-GCC 4.9.6.2 64-bit release
 ---------------------------------------------------*/
+#include<conio.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include<conio.h>
 #include<time.h>
 #include<windows.h>
 
@@ -26,52 +26,378 @@ struct SaveScore{
 
 /*INISIALISASI MODUL*/
 void AboutUs();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan about us (credits permainan)
+//I.S	: Ditampilkan tampilan sebelum tampilan about us
+//F.S	: Ditampilkan tampilan about us di layar
+
+
 void board3(int b[10]);
+
+//Author	: Irsyad Muhammad
+
+//Procedure untuk menampilkan papan ukuran 3x3
+//I.S	: Layar menampilkan pilihan sebelum modul board3
+//F.S	: Ditampilkan papan dengan grid 3x3
+
+
 void board5(int b[26]);
+
+//Author	: Irsyad Muhammad
+
+//Procedure untuk menampilkan papan ukuran 5x5
+//I.S	: Layar menampilkan pilihan sebelum modul board5
+//F.S	: Ditampilkan papan dengan grid 5x5
+
+
 void CaraBermain();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan cara bermain dan aturan
+//I.S	:Ditampilkan tampilan sebelum tampilan CaraBermain
+//F.S	:Ditampilkan tampilan CaraBermain di layar
+
+
 int CekMenang(const int board[10]);
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk memeriksa apakah dalam satu permainan sudah terdapat pemenang atau belum.
+//const int board[10] 	: parameter input bertipe const int dengan passing parameter passing by value
+//parameter input memiliki fungsi memberi informasi isi array board[10] dalam modul setiap level (mudah, menengah, sulit)
+	
+// Input : board[10]
+// Output: Angka (0 untuk draw, -1 untuk menang, 1 untuk kalah)
+
+
 int CekMenang5(const int board[26]);
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk memeriksa apakah dalam satu permainan sudah terdapat pemenang atau belum.
+//const int board[26] 	: parameter input bertipe const int dengan passing parameter passing by value
+//parameter input memiliki fungsi memberi informasi isi array board[26] dalam modul setiap level (mudah, menengah, sulit)
+	
+// Input : board[26]
+// Output: Angka (0 untuk draw, -1 untuk menang, 1 untuk kalah)
+
+
 void DisplayPemain3(int board[10]);
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan permainan board 3x3
+//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
+
+//I.S	:Ditampilkan tampilan permainan gunting-kertas-batu
+//F.S	: Pada layar ditampilkan tampilan berupa papan 3x3, ronde, dan map permainan
+
+
 void DisplayPemain5(int board[26]);
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan permainan board 3x3
+//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
+
+//I.S	:Ditampilkan tampilan permainan gunting-kertas-batu
+//F.S	: Pada layar ditampilkan tampilan berupa papan 5x5, ronde, map permainan, dan timer
+
+
 void fullscreen();
-void GetLevel(int GiliranMain);
-void gotoxy(int x, int y);
-char gridChar(int i);
-void GuntingKertasBatu();
-void HitungSkor();
-void Judul();
-void LangkahKomputerMudah3(int board[10]);
-void LangkahKomputerMudah5(int board[26]);
-void LangkahKomputerSulit3(int board[10]);
-void LangkahKomputerSulit5(int board[26]);
-void LangkahPemain3(int board[10]);
-void LangkahPemain5(int board[26]);
-void loading();
-int main();
-void Menengah3(int GiliranMain);
-void Menengah5(int GiliranMain);
-void MenuUtama();
-int minimax(int board[10], int player);
-void Mudah3(int GiliranMain);
-void Mudah5(int GiliranMain);
-void PilihPapan();
-void PilihLevel();
-void SimpanSkor(int skor);
-void showScore();
-void SortScore();
-void Sulit3();
-void Sulit5();
-void timer(float persentase);
 
-/*===========================================================================================================================================
-===========================================================================================================================================*/
-
-void fullscreen(){
 //author	: internet
 
 //Modul untuk membuat console windows menjadi layar penuh
 //I.S	: Console windows ditampilkan tidak dalam ukuran layar penuh
 //F.S	: Console windows ditampilkan dalam ukuran layar penuh
+
+
+void GetLevel(int GiliranMain);
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk memanggil modul permainan setelah bermain gunting-kertas-batu
+//GiliranMain	: berfungsi untuk menjadi parameter untuk modul setiap level di bawah ini.
+//GiliranMain	: parameter input bertipe integer dengan passing parameter passing by value
+
+//I.S	: Ditampilkan tampilan permainan gunting-kertas-batu
+//F.S	: Ditampilkan permainan dengan tingkat kesulitan yang dipilih pemain
+
+
+void gotoxy(int x, int y);
+
+//author	: internet
+
+//modul untuk memfungsikan fungsi gotoxy
+//I.S	: Output ditampilkan dari sebelah kiri atas
+//F.S	: Output ditampilkan di koordinat yang telah ditentukan
+
+
+char gridChar(int i);
+
+//author	: Github : Matthew Steel
+
+//Modul untuk menampilkan simbol di dalam papan
+//int i 	: parameter input bertipe integer dengan passing parameter passing by value.
+//int i		: berfungsi untuk mengisi switch 
+	
+//Input : nomor index board
+//Output : simbol 'x" atau 'o'
+
+
+void GuntingKertasBatu();
+
+//author	: http://deriyuliansyah.blogspot.com/2014/04/game-gunting-batu-dan-kertas-bahasa-c.html
+
+//Modul untuk menampilkan permainan gunting kertas batumemain
+//I.S	: Ditampilkan tampilan modul PilihPapan
+//F.S	: Ditampilkan tampilan permainan gunting-kertas-batu
+
+
+void HitungSkor();
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menghitung skor selama permainan
+//I.S	: Skor permainan belum diketahui	
+//F.S	: Skor permainan diketahui
+
+
+void Judul();
+
+// Author	: Irsyad Muhammad
+
+// Procedur untuk menampilkan judul permainan
+// I.S	: Layar menampilkan blankpage
+// F.S	: Layar menampilkan judul permainan "CCC :Circle Cross Challange"
+
+
+void LangkahKomputerMudah3(int board[10]);
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+    
+//I.S	: Papan belum menampilkan input simbol dari komputer (simbol X)
+//F.S 	: Simbol komputer (simbol X) ditampilkan di papan
+
+
+void LangkahKomputerMudah5(int board[26]);
+
+//	author	: Hanifah Ghina Nabila
+	
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 5x5
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah5
+    
+//I.S : Papan belum menampilkan input simbol dari komputer (simbol X)
+//F.S : Simbol komputer (simbol X) ditampilkan di papan
+
+
+void LangkahKomputerSulit3(int board[10]);
+
+//	author	: Github Matthew Steel
+	
+//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level sulit papan 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Sulit3
+    
+//I.S : Papan belum menampilkan input simbol dari komputer (simbol X)
+//F.S : Simbol komputer (simbol X) ditampilkan di papan
+
+
+void LangkahPemain3(int board[10]);
+
+// author	: Matthew Steel
+
+//Modul untuk menerima input langkah pemain pada permainan papa 3x3
+//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+
+//I.S : Papan belum menampilkan input dari pemain
+//F.S : Simbol pemain (simbol O) ditampilkan di papan apabila valid
+
+void LangkahPemain5(int board[26]);
+// author	: Hanifah Ghina Nabila
+
+//Modul untuk menerima input dari pemain pada permainan papa 5x5
+//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
+//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
+    
+//I.S : Papan belum menampilkan input dari pemain
+//F.S : Simbol pemain (simbol O) ditampilkan di papan apabila valid
+
+
+void loading();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan loading
+//I.S	: Ditampilkan tampilan modul PilihPapan/GuntingKertasBatu
+//F.s	: Ditampilkan tampilan modul GuntingKertasBatu/level yang tersedia(Mudah3,Mudah5,Menengah3,Menengah5,Sulit3, dan Sulit5)
+
+
+int main();
+
+
+void Menengah3(int GiliranMain);
+
+// author	: Irsyad Muhammad
+
+//Modul untuk memulai permaianan dengan level menengah papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan menengah pada papan 3x3
+
+
+void Menengah5(int GiliranMain);
+
+// author	: Hanifah Ghina Nabila
+
+//Modul untuk memulai permaianan dengan level menengah dengan papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 5x5
+
+
+void MenuUtama();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan mneu utama dalam permainan
+//I.S	: Ditampilkan tampilan layar sebelum modul MenuUtama
+//F.S	: Ditampilkan tampilan menu utama yang menampilkan pilihan untuk bermain, petunjuk permainan, highscore, dan exit
+
+
+int minimax(int board[10], int player);
+
+//author	: Github: Matthew Steel, 2009
+
+// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputer menentukan pergerakan komputer dengan menelurusipergerakan komputer
+//board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//board[10]	: berfungsi untuk memberi informasi isi dari array board
+//player	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: berfungsi untuk menerima angka -1 (angka player dalam board[10])
+
+
+void Mudah3(int GiliranMain);
+
+// author	: Irsyad Muhammad
+
+//Modul untuk memulai permaianan dengan level mudah papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 3x3
+
+
+void Mudah5(int GiliranMain);
+
+// author	: Hanifah Ghina Nabila
+
+//Modul untuk memulai permaianan dengan level mudah papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 5x5
+
+
+void PilihPapan();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan tampilan pilihan papan yang tersedia
+//I.S	: Ditampilkan tampilan modul PilihLevel
+//F.S	: Ditampilkan tampilan pilihan papan yang tersedia yaitu papan 3x3 dan papan 5x5, serta pilihan kembali ke menu sebelumnya dan menu utama
+
+
+void PilihLevel();
+
+//author	: Irsyad Muhammad
+
+//Modul untuk menampilkan pilihan level yang tersedia
+//I.S	: Ditampilkan tampilan layar modul MenuUtama
+//F.S	: Ditampilkan tampilan menu yang menampilkan level yang tersedia
+
+
+void SimpanSkor(int skor);
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menginput nama pemain dan menyimpan nama pemain beserta skor ke dalam file DataSkorCCC.dat
+//int skor	: parameter input bertipe integer dengan passing parameter passing by value
+//int skor 	: berfungsi menginput skorTotal dari modul hitungskor ke dalam struct data 
+	
+//I.S : File tidak ada isinya
+//F.S : Skor dan nama pemain tertulis di dalam file
+
+
+void showScore();
+
+//author	: Hanifah Ghina Nabila
+
+//Modul untuk menampilkan score yang sudah disimpan di dalam file.
+//I.S	: Ditampilkan tampilan MenuUtama
+//F.S	: Ditampilkan tampilan berupa nama dan skor yang dimiliki
+   
+   
+   
+void SortScore();
+
+// Author : Hanifah Ghina Nabila
+
+//Modul untuk mengurutkan skor yang terdapat di dalam file secara ascending
+//I.S : Skor pada file belum terurut
+//F.S : Skor pada file sudah terurut
+
+
+void Sulit3();
+
+// author	: Matthew Steel 
+
+//Modul untuk memulai permaianan dengan level sulit papan 3x3
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan sulit pada papan 3x3
+
+
+void Sulit5();
+
+// author	: Irsyad Muhammad
+
+//Modul untuk memulai permaianan dengan level sulit papan 5x5
+//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
+//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
+
+// I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
+// F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan sulit pada papan 5x5
+
+
+void timer(float persentase);
+
+//author:
+
+//Modul untuk mengatur kecepatan printf() pada modul loading()
+
+
+/*===========================================================================================================================================
+===========================================================================================================================================*/
+
+void fullscreen(){
 
 	keybd_event(VK_MENU,0x38,0,0);
 	keybd_event(VK_RETURN,0x1c,0,0);
@@ -81,11 +407,6 @@ void fullscreen(){
 
 
 void gotoxy(int x, int y){
-//author	: internet
-
-//modul untuk memfungsikan fungsi gotoxy
-//I.S	: Output ditampilkan dari sebelah kiri atas
-//F.S	: Output ditampilkan di koordinat yang telah ditentukan
 	
 	HANDLE hConsoleOutput;  
 	COORD dwCursorPosition;  
@@ -97,54 +418,49 @@ void gotoxy(int x, int y){
 
 
 void Judul(){
-// Author	: Irsyad Muhammad
-
-// Procedur untuk menampilkan judul permainan
-// I.S	: Layar menampilkan blankpage
-// F.S	: Layar menampilkan judul permainan "CCC :Circle Cross Challange"
 
 /*BEGIN PROCEDURE_JUDUL*/
 	
 	/*TAMPILAN CCC*/	
 	/*baris 1*/
-	gotoxy(58,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,5); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,5); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,5); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,5); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 2*/
-	gotoxy(58,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,6); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,6); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,6); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,6); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 3*/
-	gotoxy(58,7); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,7); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,7); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,7); printf("€€€€€\n");
+	gotoxy(76,7); printf("€€€€€\n");
+	gotoxy(94,7); printf("€€€€€\n");
 	
 	/*baris 4*/
-	gotoxy(58,8); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,8); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,8); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,8); printf("€€€€€\n");
+	gotoxy(76,8); printf("€€€€€\n");
+	gotoxy(94,8); printf("€€€€€\n");
 	
 	/*baris 5*/
-	gotoxy(58,9); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,9); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,9); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,9); printf("€€€€€\n");
+	gotoxy(76,9); printf("€€€€€\n");
+	gotoxy(94,9); printf("€€€€€\n");
 	
 	/*baris 6*/
-	gotoxy(58,10); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(76,10); printf("√õ√õ√õ√õ√õ\n");
-	gotoxy(94,10); printf("√õ√õ√õ√õ√õ\n");
+	gotoxy(58,10); printf("€€€€€\n");
+	gotoxy(76,10); printf("€€€€€\n");
+	gotoxy(94,10); printf("€€€€€\n");
 		
 	/*baris 7*/
-	gotoxy(58,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,11); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,11); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,11); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,11); printf("€€€€€€€€€€€€\n");
 	
 	/*baris 8*/
-	gotoxy(58,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(76,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
-	gotoxy(94,12); printf("√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ√õ\n");
+	gotoxy(58,12); printf("€€€€€€€€€€€€\n");
+	gotoxy(76,12); printf("€€€€€€€€€€€€\n");
+	gotoxy(94,12); printf("€€€€€€€€€€€€\n");
 	/*END TAMPILAN CCC*/
 	
 	/*TAMPILAN CIRCLE CROSS CHALLANGE*/
@@ -156,11 +472,6 @@ void Judul(){
 
 
 void PilihLevel(){
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan pilihan level yang tersedia
-//I.S	: Ditampilkan tampilan layar modul MenuUtama
-//F.S	: Ditampilkan tampilan menu yang menampilkan level yang tersedia
 
 	int pilihlevel; //variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
 		
@@ -210,11 +521,7 @@ void PilihLevel(){
 
 
 void PilihPapan(){
-//author	: Irsyad Muhammad
 
-//Modul untuk menampilkan tampilan pilihan papan yang tersedia
-//I.S	: Ditampilkan tampilan modul PilihLevel
-//F.S	: Ditampilkan tampilan pilihan papan yang tersedia yaitu papan 3x3 dan papan 5x5, serta pilihan kembali ke menu sebelumnya dan menu utama
 
 	int pilihpapan; //pilihpapan adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu yang tersedia
 
@@ -261,11 +568,6 @@ void PilihPapan(){
 
 
 void GuntingKertasBatu(){
-//author	: http://deriyuliansyah.blogspot.com/2014/04/game-gunting-batu-dan-kertas-bahasa-c.html
-
-//Modul untuk menampilkan permainan gunting kertas batumemain
-//I.S	: Ditampilkan tampilan modul PilihPapan
-//F.S	: Ditampilkan tampilan permainan gunting-kertas-batu
 
     srand(time(NULL)); //berguna untuk mengacak angka
     int pemain; //merupakan inisialisasi dari pilihan tangan player
@@ -364,21 +666,12 @@ void GuntingKertasBatu(){
 		}
 }
 
+
 void GetLevel(int GiliranMain){
-//author	: Hanifah Ghina Nabila
-
-//Modul untuk memanggil modul permainan setelah bermain gunting-kertas-batu
-//GiliranMain	: berfungsi untuk menjadi parameter untuk modul setiap level di bawah ini.
-//GiliranMain	: parameter input bertipe integer dengan passing parameter passing by value
-
-//I.S	: Ditampilkan tampilan permainan gunting-kertas-batu
-//F.S	: Ditampilkan permainan dengan tingkat kesulitan yang dipilih pemain
 
 	switch(Generate){
 		case 3: 
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Mudah3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -387,8 +680,6 @@ void GetLevel(int GiliranMain){
 			break;
 		case 5:
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Mudah5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -397,8 +688,6 @@ void GetLevel(int GiliranMain){
 			break;
 		case 6:
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Menengah3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -407,8 +696,6 @@ void GetLevel(int GiliranMain){
 			break;
 		case 10:
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Menengah5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -417,8 +704,6 @@ void GetLevel(int GiliranMain){
 			break;
 		case 9:
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Sulit3(GiliranMain);
 				gotoxy(45,29);system("pause");
@@ -427,8 +712,6 @@ void GetLevel(int GiliranMain){
 			break;
 		case 15:
 			game = 1;
-			system("cls");
-			loading();
 			do{
 				Sulit5(GiliranMain);
 				gotoxy(45,34);system("pause");
@@ -440,14 +723,6 @@ void GetLevel(int GiliranMain){
 
 
 int CekMenang(const int board[10]){
-//author	: Matthew Steel
-
-//Modul untuk memeriksa apakah dalam satu permainan sudah terdapat pemenang atau belum.
-//const int board[10] 	: parameter input bertipe const int dengan passing parameter passing by value
-//parameter input memiliki fungsi memberi informasi isi array board[10] dalam modul setiap level (mudah, menengah, sulit)
-	
-//Input	: Board[10]
-//Output: Angka (0 untuk draw, -1 untuk menang, 1 untuk kalah)
 
 	/*Deklarasi*/
 	unsigned wins[8][3]={{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
@@ -465,14 +740,6 @@ int CekMenang(const int board[10]){
 
 
 int CekMenang5(const int board[26]){
-//author	: Hanifah Ghina Nabila
-
-//Modul untuk memeriksa apakah dalam satu permainan sudah terdapat pemenang atau belum.
-//const int board[26] 	: parameter input bertipe const int dengan passing parameter passing by value
-//parameter input memiliki fungsi memberi informasi isi array board[26] dalam modul setiap level (mudah, menengah, sulit)
-	
-// Input : board[26]
-// Output: Angka (0 untuk draw, -1 untuk menang, 1 untuk kalah)
 
 	/*Deklarasi*/
 	unsigned wins[12][5] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25},{1,6,11,16,21},{2,7,12,17,22},
@@ -493,14 +760,6 @@ int CekMenang5(const int board[26]){
 
 
 int minimax(int board[10], int player) {
-//author	: Github: Matthew Steel, 2009
-
-// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputer menentukan pergerakan komputer dengan menelurusipergerakan komputer
-//board[10]	: parameter input bertipe integer dengan passing parameter passing by value
-//board[10]	: berfungsi untuk memberi informasi isi dari array board
-//player	: parameter input bertipe integer dengan passing parameter passing by value
-//player	: berfungsi untuk menerima angka -1 (angka player dalam board[10])
-
 
     //How is the position like for player (their turn) on board?
     int winner = CekMenang(board);
@@ -525,15 +784,40 @@ int minimax(int board[10], int player) {
 }
 
 
-void LangkahKomputerMudah3(int board[10]) {
-//	author	: Irsyad Muhammad
+int minimax5(int board[26], int player) {
+//author	: Github: Matthew Steel, 2009
 
-//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 3x3
-//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
-//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
-    
-//I.S	: Papan belum menampilkan input simbol dari komputer (simbol X)
-//F.S 	: Simbol komputer (simbol X) ditampilkan di papan
+// Modul untuk mencari kemungkinan pergerakan komputer yang memungkinkan dan baik untuk komputer menentukan pergerakan komputer dengan menelurusipergerakan komputer
+//board[10]	: parameter input bertipe integer dengan passing parameter passing by value
+//board[10]	: berfungsi untuk memberi informasi isi dari array board
+//player	: parameter input bertipe integer dengan passing parameter passing by value
+//player	: berfungsi untuk menerima angka -1 (angka player dalam board[10])
+
+
+    //How is the position like for player (their turn) on board?
+    int winner = CekMenang5(board);
+    if(winner != 0) return winner*player;
+
+    int move = -1;
+    int score = -2;//Losing moves are preferred to no move
+    int i;
+    for(i = 1; i < 26; ++i) {//For all moves,
+        if(board[i] == 0) {//If legal,
+            board[i] = player;//Try the move
+            int thisScore = -minimax5(board, player*-1);
+            if(thisScore > score) {
+                score = thisScore;
+                move = i;
+            }//Pick the one that's worst for the opponent
+            board[i] = 0;//Reset board after try
+        }
+    }
+    if(move == -1) return 0;
+    return score;
+}
+
+
+void LangkahKomputerMudah3(int board[10]) {
 
 	/*Deklarasi*/
 	int i;
@@ -553,14 +837,6 @@ void LangkahKomputerMudah3(int board[10]) {
 
 
 void LangkahKomputerMudah5(int board[26]){
-//	author	: Hanifah Ghina Nabila
-	
-//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 5x5
-//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
-//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah5
-    
-//I.S : Papan belum menampilkan input simbol dari komputer (simbol X)
-//F.S : Simbol komputer (simbol X) ditampilkan di papan
     
 	/*Deklarasi*/
 	int i;
@@ -613,39 +889,31 @@ void LangkahKomputerSulit3(int board[10]){
 
 
 void LangkahKomputerSulit5(int board[26]){
-//	author	: Hanifah Ghina Nabila
-
-//Modul untuk menentukan langkah yang akan diambil oleh komputer dalam permaianan level mudah papan 5x5
-//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
-//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
-    
-//I.S	: Papan belum menampilkan input simbol dari komputer (simbol X)
-//F.S 	: Simbol komputer (simbol X) ditampilkan di papan
 
 	/*Deklarasi*/
+	int move = -1;
+	int score = -2;
 	int i;
-	int move;
 
 	/*Proses*/
-	reset:
-	move = 1 + rand()% 25; // 1 adalah range angka terkecil yg akan di random, dan 9 adalah angka terbesar yang akan dirandom
+	for(i=1; i < 26; ++i) {
 		
-	if(board[move] != 0){
-		goto reset;
+		if(board[i] == 0){
+			board[i] = 1;
+			int tempScore = -minimax5(board, -1);
+			board[i] = 0;
+			if (tempScore > score) {
+				score = tempScore;
+				move = i;	
+			}
+		}
 	}
-	else{
-		board[move] = 1;
-	}
+	
+	board[move] = 1;
 }
 
+
 void DisplayPemain3(int board[10]){
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan tampilan permainan board 3x3
-//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
-
-//I.S	:Ditampilkan tampilan permainan gunting-kertas-batu
-//F.S	: Pada layar ditampilkan tampilan berupa papan 3x3, ronde, dan map permainan
 	
 	/*Deklarasi*/
 	int y; //variabel untuk menentukan koordinat y
@@ -663,10 +931,10 @@ void DisplayPemain3(int board[10]){
 	
 	/*TAMPILAN SAAT PERMAINAN MULAI*/
 	board3(board);
-	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
-	gotoxy(39,3);printf("¬∫");
-	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
+	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
+	gotoxy(39,3);printf("∫");
+	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
 	gotoxy(143,25);printf("Status");
@@ -675,19 +943,12 @@ void DisplayPemain3(int board[10]){
 	gotoxy(135,31);printf("Kalah	: %d", kalah);
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("¬∫");
+		gotoxy(125,y);printf("∫");
 	}
 }
 
 
 void DisplayPemain5(int board[26]){
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan tampilan permainan board 3x3
-//Board adalah parameter input bertipe integer dengan passing paramaeter passing by value
-
-//I.S	:Ditampilkan tampilan permainan gunting-kertas-batu
-//F.S	: Pada layar ditampilkan tampilan berupa papan 5x5, ronde, map permainan, dan timer
 	
 	/*Deklarasi*/
 	int y; //variabel untuk menentukan koordinat y
@@ -704,10 +965,10 @@ void DisplayPemain5(int board[26]){
 	
 	/*TAMPILAN SAAT PERMAINANA MULAI*/
 	board5(board);
-	gotoxy(15,2);printf("√â√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬ª");
-	gotoxy(39,3);printf("¬∫");
-	gotoxy(15,3);printf("¬∫ Ronde Ke :\t %d",game);
-	gotoxy(15,4);printf("√à√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç√ç¬º");
+	gotoxy(15,2);printf("…ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª");
+	gotoxy(39,3);printf("∫");
+	gotoxy(15,3);printf("∫ Ronde Ke :\t %d",game);
+	gotoxy(15,4);printf("»ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº");
 	gotoxy(43,10);printf("Pemain ( O )        Komputer ( X )\n");
 	gotoxy(145,10);printf("Map");
 	gotoxy(143,31);printf("Status");
@@ -716,20 +977,12 @@ void DisplayPemain5(int board[26]){
 	gotoxy(135,37);printf("Kalah	: %d", kalah);
 	
 	for(y = 0; y < 48; y++){
-		gotoxy(125,y);printf("¬∫");
+		gotoxy(125,y);printf("∫");
 	}
 }
 
 
 void LangkahPemain3(int board[10]) {
-// author	: Matthew Steel
-
-//Modul untuk menerima input langkah pemain pada permainan papa 3x3
-//int board[10]	: parameter input bertipe integer dengan passing parameter passing by value
-//int board[10]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
-
-//I.S : Papan belum menampilkan input dari pemain
-//F.S : Simbol pemain (simbol O) ditampilkan di papan apabila valid
 
 	/*Deklarsi*/
 	int move = 0;
@@ -740,15 +993,16 @@ void LangkahPemain3(int board[10]) {
 		
 			DisplayPemain3(board);
 		
-			gotoxy(45,28);printf("Masukkan Pilihan :");
-			gotoxy(65,28);scanf("%d", &move);
-			
+			gotoxy(45,28);printf("Masukkan Pilihan (1 - 9):");
+			gotoxy(72,28);scanf("%d", &move);
+
 			if (board[move] != 0){
 				gotoxy(45, 32);printf("Langkah Tidak Valid!\n");
 				gotoxy(65, 32);getch();
 				goto begin;
 				printf("\n");
 			}
+				
 	}while( move >= 10 || move < 1 && board[move] == 0);
 	
 	board[move] = -1;
@@ -756,14 +1010,6 @@ void LangkahPemain3(int board[10]) {
 
 
 void LangkahPemain5(int board[26]) {
-// author	: Hanifah Ghina Nabila
-
-//Modul untuk menerima input dari pemain pada permainan papa 5x5
-//int board[26]	: parameter input bertipe integer dengan passing parameter passing by value
-//int board[26]	: berfungsi untuk memberikan informasi isi array board yang ada pada modul Mudah3
-    
-//I.S : Papan belum menampilkan input dari pemain
-//F.S : Simbol pemain (simbol O) ditampilkan di papan apabila valid
 
 	/*Deklarsi*/
 	int move = 0;
@@ -774,8 +1020,8 @@ void LangkahPemain5(int board[26]) {
 		
 			DisplayPemain5(board);
 		
-			gotoxy(45,33);printf("Masukkan Pilihan :");
-			gotoxy(65,33);scanf("%d", &move);
+			gotoxy(45,33);printf("Masukkan Pilihan (1 - 25):");
+			gotoxy(72,33);scanf("%d", &move);
 			
 			if (board[move] != 0){
 				gotoxy(45, 37);printf("Langkah Tidak Valid!\n");
@@ -790,14 +1036,6 @@ void LangkahPemain5(int board[26]) {
 
 
 void Mudah3(int GiliranMain){
-// author	: Irsyad Muhammad
-
-//Modul untuk memulai permaianan dengan level mudah papan 3x3
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 3x3
 
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
@@ -856,14 +1094,6 @@ void Mudah3(int GiliranMain){
 
 
 void Mudah5(int GiliranMain){
-// author	: Hanifah Ghina Nabila
-
-//Modul untuk memulai permaianan dengan level mudah papan 5x5
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 5x5
 
 	/*Deklarasi*/
 	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -875,6 +1105,7 @@ void Mudah5(int GiliranMain){
 	/*Proses*/		
 	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
+				
 		if((turn + GiliranMain) % 2 == 0) {
 			LangkahKomputerMudah5(board);
 		}
@@ -922,14 +1153,6 @@ void Mudah5(int GiliranMain){
 
 
 void Menengah3(int GiliranMain){
-// author	: Irsyad Muhammad
-
-//Modul untuk memulai permaianan dengan level menengah papan 3x3
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan menengah pada papan 3x3
 
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
@@ -993,14 +1216,6 @@ void Menengah3(int GiliranMain){
 
 
 void Menengah5(int GiliranMain){
-// author	: Hanifah Ghina Nabila
-
-//Modul untuk memulai permaianan dengan level menengah dengan papan 5x5
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan mudah pada papan 5x5
 
 	/*Deklarasi*/
 	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -1013,12 +1228,7 @@ void Menengah5(int GiliranMain){
 	for(turn = 0; turn < 25 && CekMenang5(board) == 0; ++turn){
 
 		if((turn + GiliranMain) % 2 == 0) {
-			if(turn < 13) {
-				LangkahKomputerSulit5(board);
-			}
-			else{
-				LangkahKomputerMudah5(board);
-			}
+			LangkahKomputerMudah5(board);
 		}
 		else {
 			LangkahPemain5(board);
@@ -1064,14 +1274,6 @@ void Menengah5(int GiliranMain){
 
 
 void Sulit3(int GiliranMain){
-// author	: Matthew Steel 
-
-//Modul untuk memulai permaianan dengan level sulit papan 3x3
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-//I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-//F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan sulit pada papan 3x3
 
 	/*Deklarasi*/
 	int board[10] = {0,0,0,0,0,0,0,0,0,0};
@@ -1082,6 +1284,7 @@ void Sulit3(int GiliranMain){
 	
 	/*Proses*/
 	for(turn = 0; turn < 9 && CekMenang(board) == 0; ++turn){
+
 		
 		if((turn + GiliranMain) % 2 == 0) {
 			LangkahKomputerSulit3(board);
@@ -1131,14 +1334,6 @@ void Sulit3(int GiliranMain){
 
 
 void Sulit5(int GiliranMain){
-// author	: Irsyad Muhammad
-
-//Modul untuk memulai permaianan dengan level sulit papan 5x5
-//GiliranMain : parameter input bertipe integer dengan passing parameter passing by value
-//GiliranMain berfungsi untuk menentukan urutan main dalam permainan
-
-// I.S : Ditampilkan tampilan layar modul GuntingKertasBatu
-// F.S : Ditampilkan tampilan permainan dengan tingkat kesulitan sulit pada papan 5x5
 
 	/*Deklarasi*/
 	int board[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -1197,11 +1392,6 @@ void Sulit5(int GiliranMain){
 
 
 void HitungSkor(){
-//author	: Hanifah Ghina Nabila
-
-//Modul untuk menghitung skor selama permainan
-//I.S	: Skor permainan belum diketahui	
-//F.S	: Skor permainan diketahui
 
 	int SkorTotal, SkorMenang, SkorSeri;
 	
@@ -1241,18 +1431,12 @@ void HitungSkor(){
 	SimpanSkor(SkorTotal);
 }
 
-void SimpanSkor(int skor){
-//author	: Hanifah Ghina Nabila
 
-//Modul untuk menginput nama pemain dan menyimpan nama pemain beserta skor ke dalam file DataSkorCCC.dat
-//int skor	: parameter input bertipe integer dengan passing parameter passing by value
-//int skor 	: berfungsi menginput skorTotal dari modul hitungskor ke dalam struct data 
-	
-//I.S : File tidak ada isinya
-//F.S : Skor dan nama pemain tertulis di dalam file
+void SimpanSkor(int skor){
 
 	struct SaveScore data; 
 	FILE *DataSkor;
+	int pilihan;
 	
 	DataSkor = fopen("DataSkorCCC.txt", "ab");
 	gotoxy(70,22);printf("Skor kamu : %d", skor);
@@ -1265,12 +1449,8 @@ void SimpanSkor(int skor){
 	fclose(DataSkor);	
 }
 
-void SortScore(){
-// Author : Hanifah Ghina Nabila
 
-//Modul untuk mengurutkan skor yang terdapat di dalam file secara ascending
-//I.S : Skor pada file belum terurut
-//F.S : Skor pada file sudah terurut
+void SortScore(){
 
 	FILE *arrange;
 	struct SaveScore leaderboard[100];
@@ -1286,7 +1466,7 @@ void SortScore(){
 	fclose(arrange);
 	
 	for(i=0; i<n-1; i++){
-		for(j=0; j<n-i-1; j++){
+		for(j=0; j<n-1; j++){
 			if(leaderboard[j].skor < leaderboard[j+1].skor){
 				temp = leaderboard[j];
 				leaderboard[j] = leaderboard[j+1];
@@ -1305,12 +1485,7 @@ void SortScore(){
 
 
 void showScore(){
-//author	: Hanifah Ghina Nabila
 
-//Modul untuk menampilkan score yang sudah disimpan di dalam file.
-//I.S	: Ditampilkan tampilan MenuUtama
-//F.S	: Ditampilkan tampilan berupa nama dan skor yang dimiliki
-   
 	SortScore();
    
     FILE *tampil;
@@ -1332,20 +1507,14 @@ void showScore(){
 
 
 char gridChar(int i){
-//author	: Github : Matthew Steel
-
-//Modul untuk menampilkan simbol di dalam papan
-//int i 	: parameter input bertipe integer dengan passing parameter passing by value.
-//int i		: berfungsi untuk mengisi switch 
-	
-//Input : nomor index board
-//Output : simbol 'x" atau 'o'
 	
 	switch(i){
 		case -1:
 			return 'O';
+			
 		case 0:
 			return ' ';
+		
 		case 1:
 			return 'X';
 	}	
@@ -1353,11 +1522,6 @@ char gridChar(int i){
 
 
 void board3(int b[10]) {
-//Author	: Irsyad Muhammad
-
-//Procedure untuk menampilkan papan ukuran 3x3
-//I.S	: Layar menampilkan pilihan sebelum modul board3
-//F.S	: Ditampilkan papan dengan grid 3x3
 	
 	int x = 50;
 	system("CLS");
@@ -1390,11 +1554,6 @@ void board3(int b[10]) {
 
 
 void board5(int b[26]) {
-//Author	: Irsyad Muhammad
-
-//Procedure untuk menampilkan papan ukuran 5x5
-//I.S	: Layar menampilkan pilihan sebelum modul board5
-//F.S	: Ditampilkan papan dengan grid 5x5
 	
 	system("CLS");
 	/*TAMPILAN PAPAN*//*TAMPILAN PAPAN YANG AKAN DIISI INPUT PLAYER*/
@@ -1436,11 +1595,6 @@ void board5(int b[26]) {
 
 
 void CaraBermain() {
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan tampilan cara bermain dan aturan
-//I.S	:Ditampilkan tampilan sebelum tampilan CaraBermain
-//F.S	:Ditampilkan tampilan CaraBermain di layar
 
 /*BEGIN PROCEDURE CARA_BERMAIN*/
 
@@ -1464,11 +1618,6 @@ void CaraBermain() {
 
 
 void AboutUs() {
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan tampilan about us (credits permainan)
-//I.S	: Ditampilkan tampilan sebelum tampilan about us
-//F.S	: Ditampilkan tampilan about us di layar
 
 /*BEGIN PROCEDUR ABOUTUS*/
 	FILE *file;
@@ -1491,9 +1640,6 @@ void AboutUs() {
 
 
 void timer(float persentase) {
-//author:
-
-//Modul untuk mengatur kecepatan printf() pada modul loading()
 
 	clock_t endwait;
 	endwait=clock()+persentase*CLOCKS_PER_SEC;
@@ -1503,33 +1649,28 @@ void timer(float persentase) {
 
 
 void loading() {
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan tampilan loading
-//I.S	: Ditampilkan tampilan modul PilihPapan/GuntingKertasBatu
-//F.s	: Ditampilkan tampilan modul GuntingKertasBatu/level yang tersedia(Mudah3,Mudah5,Menengah3,Menengah5,Sulit3, dan Sulit5)
  
  /*BEGIN PROCEDURE LOADING*/
 	int x;
 	gotoxy(75,20); printf("Harap Tunggu..");
 
 	for(x=65;x<=67;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.5);
 	}
 	
 	for(x=68;x<=75;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.1);
 	}
 	
 	for(x=76;x<=86;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.02);
 	}
 	
 	for(x=87;x<=97;x++){
-		gotoxy(x,22);printf("√õ\n");
+		gotoxy(x,22);printf("€\n");
 		timer(0.1);
 	}
 	
@@ -1538,11 +1679,6 @@ void loading() {
 
 
 void MenuUtama() {
-//author	: Irsyad Muhammad
-
-//Modul untuk menampilkan mneu utama dalam permainan
-//I.S	: Ditampilkan tampilan layar sebelum modul MenuUtama
-//F.S	: Ditampilkan tampilan menu utama yang menampilkan pilihan untuk bermain, petunjuk permainan, highscore, dan exit
 	
 	int pilihmenu;	//PilihMenu adalah variabel lokal bertipe int yang berfungsi sebagai pilihan dari case menu	yang tersedia
 	
@@ -1588,7 +1724,9 @@ void MenuUtama() {
 	}
 }
 
+
 int main() {
 	fullscreen();
 	MenuUtama();
 }
+
